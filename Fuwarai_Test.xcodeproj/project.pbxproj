@@ -16,6 +16,7 @@
 		894F3D941A5FC29600552369 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894F3D921A5FC29600552369 /* LaunchScreen.xib */; };
 		894F3DA01A5FC29600552369 /* Fuwarai_TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 894F3D9F1A5FC29600552369 /* Fuwarai_TestTests.m */; };
 		894F3DAA1A5FC42F00552369 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894F3DA91A5FC42F00552369 /* AVFoundation.framework */; };
+		89514D5F1A735A5C009E0DAD /* AfterTakePhotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89514D5E1A735A5C009E0DAD /* AfterTakePhotViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		894F3D9E1A5FC29600552369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		894F3D9F1A5FC29600552369 /* Fuwarai_TestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fuwarai_TestTests.m; sourceTree = "<group>"; };
 		894F3DA91A5FC42F00552369 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		89514D5D1A735A5C009E0DAD /* AfterTakePhotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AfterTakePhotViewController.h; path = ../AfterTakePhotViewController.h; sourceTree = "<group>"; };
+		89514D5E1A735A5C009E0DAD /* AfterTakePhotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AfterTakePhotViewController.m; path = ../AfterTakePhotViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 			children = (
 				894F3D841A5FC29600552369 /* AppDelegate.h */,
 				894F3D851A5FC29600552369 /* AppDelegate.m */,
+				89514D5D1A735A5C009E0DAD /* AfterTakePhotViewController.h */,
+				89514D5E1A735A5C009E0DAD /* AfterTakePhotViewController.m */,
 				894F3D8A1A5FC29600552369 /* ViewController.h */,
 				894F3D8B1A5FC29600552369 /* ViewController.m */,
 				894F3D8D1A5FC29600552369 /* Main.storyboard */,
@@ -227,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				894F3D861A5FC29600552369 /* AppDelegate.m in Sources */,
+				89514D5F1A735A5C009E0DAD /* AfterTakePhotViewController.m in Sources */,
 				894F3D831A5FC29600552369 /* main.m in Sources */,
 				894F3D8C1A5FC29600552369 /* ViewController.m in Sources */,
 				894F3D891A5FC29600552369 /* Fuwarai_Test.xcdatamodeld in Sources */,
@@ -422,6 +428,7 @@
 				894F3DA51A5FC29600552369 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		894F3DA61A5FC29600552369 /* Build configuration list for PBXNativeTarget "Fuwarai_TestTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +437,7 @@
 				894F3DA81A5FC29600552369 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

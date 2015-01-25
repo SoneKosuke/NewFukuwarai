@@ -15,11 +15,100 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HdO-2a-0UV">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="-62" width="400" height="600"/>
+                                </variation>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="HdO-2a-0UV"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="HdO-2a-0UV"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="originImage" destination="HdO-2a-0UV" id="o75-NA-3Fa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="123" y="127"/>
+        </scene>
+        <!--After Take Phot View Controller-->
+        <scene sceneID="fhq-xf-Are">
+            <objects>
+                <viewController storyboardIdentifier="AfterTakePhotViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="t5a-c0-Zse" customClass="AfterTakePhotViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X0B-su-gh7"/>
+                        <viewControllerLayoutGuide type="bottom" id="clI-xr-RwE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="027-gc-6Au">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nCu-EW-Jqj">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="QMl-pT-hNo">
+                                        <variation key="widthClass=compact" constant="434"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="309" id="RQ7-gf-pMU"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="QMl-pT-hNo"/>
+                                        <exclude reference="RQ7-gf-pMU"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="QMl-pT-hNo"/>
+                                        <include reference="RQ7-gf-pMU"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="nCu-EW-Jqj" secondAttribute="centerY" constant="80" id="HXB-WS-ahP">
+                                <variation key="widthClass=compact" constant="48"/>
+                            </constraint>
+                            <constraint firstAttribute="centerX" secondItem="nCu-EW-Jqj" secondAttribute="centerX" constant="-0.5" id="ybo-t9-h8Z"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="nCu-EW-Jqj"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="HXB-WS-ahP"/>
+                                <exclude reference="ybo-t9-h8Z"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="nCu-EW-Jqj"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="HXB-WS-ahP"/>
+                                <include reference="ybo-t9-h8Z"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="originImage" destination="nCu-EW-Jqj" id="dBe-u4-CH3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z02-6c-kDw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="823.5" y="127"/>
         </scene>
     </scenes>
 </document>
