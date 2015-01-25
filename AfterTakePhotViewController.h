@@ -10,6 +10,15 @@
 
 @interface AfterTakePhotViewController : ViewController
 
-@property (weak, nonatomic) IBOutlet UIImageView *originImage;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *righteye;
+@property (weak, nonatomic) IBOutlet UIImageView *lefteye;
+@property (weak, nonatomic) IBOutlet UIImageView *nose;
+@property (weak, nonatomic) IBOutlet UIImageView *mouth;
+- (IBAction)rightEyemove:(UIPanGestureRecognizer *)sender;
+- (IBAction)leftEyeMove:(UIPanGestureRecognizer *)sender;
+- (IBAction)noseMove:(UIPanGestureRecognizer *)sender;
+- (IBAction)mouthMove:(UIPanGestureRecognizer *)sender;
 
 @end

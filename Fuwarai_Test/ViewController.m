@@ -210,25 +210,25 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [self dismissViewControllerAnimated:YES completion:^{
-    self.originImage.image = image;
-    }];
-    
-    int status = 1;
-    //ユーザデフォルトに書き込む
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:status forKey:@"status"];
-    [defaults synchronize];
-    
-//    // モーダルビューを閉じる
-//    [self.session stopRunning];
-    
-    // AfterTakePhotViewControllerのインスタンス化
-    AfterTakePhotViewController *AfterTakePhotVC =  [self.storyboard instantiateViewControllerWithIdentifier:@"AfterTakePhotViewController"];
-    
-    // AfterTakePhotViewControllerの起動
-    [self presentViewController:AfterTakePhotVC animated:YES completion:nil];
+////    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+////    [self dismissViewControllerAnimated:YES completion:^{
+////    self.originImage.image = image;
+////    }];
+//    
+//    int status = 1;
+//    //ユーザデフォルトに書き込む
+//    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+//    [defaults setInteger:status forKey:@"status"];
+//    [defaults synchronize];
+//    
+////    // モーダルビューを閉じる
+////    [self.session stopRunning];
+//    
+//    // AfterTakePhotViewControllerのインスタンス化
+//    AfterTakePhotViewController *AfterTakePhotVC =  [self.storyboard instantiateViewControllerWithIdentifier:@"AfterTakePhotViewController"];
+//    
+//    // AfterTakePhotViewControllerの起動
+//    [self presentViewController:AfterTakePhotVC animated:YES completion:nil];
     
 }
 
