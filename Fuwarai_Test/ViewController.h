@@ -10,8 +10,6 @@
 
 @interface ViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *origImage;
-
 
 @end
 

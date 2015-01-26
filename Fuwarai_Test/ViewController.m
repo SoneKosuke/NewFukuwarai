@@ -33,9 +33,9 @@
     
     if (status == 0) {
     
-        // 撮影ボタンを配置したツールバーを生成
-        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50)];
-        toolbar.translucent = YES;
+        // 撮影ボタンを配置したツールバーを生成（下）
+        UIToolbar *toolbarunder = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50)];
+        toolbarunder.translucent = YES;
         
         // アルバムを生成する
         UIBarButtonItem *album = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
@@ -53,16 +53,19 @@
         UIBarButtonItem *library = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
                                                                              target:self
                                                                              action:@selector(openLibrary:)];
-        // toolbarにbuttonを配置
-        NSArray *items = [NSArray arrayWithObjects:album, spacer, camera, spacer, library, nil];
-        toolbar.items = items;
-        [self.view addSubview:toolbar];
+        
+        // toolbarunderにbuttonを配置
+        NSArray *itemsunder = [NSArray arrayWithObjects:album, spacer, camera, spacer, library, nil];
+        
+        
+        toolbarunder.items = itemsunder;
+        [self.view addSubview:toolbarunder];
     
         // プレビュー用のビューを生成
-        self.previewView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                toolbar.frame.size.height,
+        self.previewView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,
                                                                 self.view.bounds.size.width,
-                                                                self.view.bounds.size.height - 2*toolbar.frame.size.height)];
+                                                                self.view.bounds.size.height - (toolbarunder.frame.size.height))];
+        
         [self.view addSubview:self.previewView];
     }
 }
@@ -149,12 +152,10 @@
          if (imageDataSampleBuffer == NULL) {
              return;
          }
+         NSLog(@"%@", imageDataSampleBuffer);
          
          // 入力された画像データからJPEGフォーマットとしてデータを取得
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-         
-         // JPEGデータからUIImageを作成
-//         UIImage *image = [[UIImage alloc] initWithData:imageData];
          
          // 保存するディレクトリを指定します
          // ここではデータを保存する為に一般的に使われるDocumentsディレクトリ
@@ -206,29 +207,78 @@
     }
 }
 
+// フロントカメラへ
+- (AVCaptureDevice *)frontFacingCameraIfAvailable
+{
+    //  look at all the video devices and get the first one that's on the front
+    NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    AVCaptureDevice *captureDevice = nil;
+    for (AVCaptureDevice *device in videoDevices)
+    {
+        if (device.position == AVCaptureDevicePositionFront)
+        {
+            captureDevice = device;
+            break;
+        }
+    }
+    
+    //  couldn't find one on the front, so just get the default video device.
+    if ( ! captureDevice)
+    {
+        captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    }
+    
+    return captureDevice;
+}
+
 
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-////    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-////    [self dismissViewControllerAnimated:YES completion:^{
-////    self.originImage.image = image;
-////    }];
-//    
-//    int status = 1;
-//    //ユーザデフォルトに書き込む
-//    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-//    [defaults setInteger:status forKey:@"status"];
-//    [defaults synchronize];
-//    
-////    // モーダルビューを閉じる
-////    [self.session stopRunning];
-//    
-//    // AfterTakePhotViewControllerのインスタンス化
-//    AfterTakePhotViewController *AfterTakePhotVC =  [self.storyboard instantiateViewControllerWithIdentifier:@"AfterTakePhotViewController"];
-//    
-//    // AfterTakePhotViewControllerの起動
-//    [self presentViewController:AfterTakePhotVC animated:YES completion:nil];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    NSLog(@"%@", image);
+    // 入力された画像データからJPEGフォーマットとしてデータを取得
+
+    
+    // 選択された画像データをNSDataに変換 jpegStillImageNSDataRepresentation
+    NSData *imageData = UIImageJPEGRepresentation(image, 1);
+    
+   // NSLog(@"imageData%@",imageData);
+    
+    // 保存するディレクトリを指定します
+    NSString *path = [NSString stringWithFormat:@"%@/sample.jpg",
+                      [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]];
+    
+    // NSDataのwriteToFileメソッドを使ってファイルに書き込みます
+    // atomically=YESの場合、同名のファイルがあったら、まずは別名で作成して、その後、ファイルの上書きを行います
+    if ([imageData writeToFile:path atomically:YES]) {
+        NSLog(@"save OK");
+        NSLog(@"%@", path);
+        
+        NSUserDefaults* defaultphot = [NSUserDefaults standardUserDefaults];
+        [defaultphot setObject:path forKey:@"path"];
+        [defaultphot synchronize];
+        
+    } else {
+        NSLog(@"save NG");
+    }
+
+    int status = 1;
+    //ユーザデフォルトに書き込む
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:status forKey:@"status"];
+    [defaults synchronize];
+    
+    // モーダルビューを閉じる
+    [self.session stopRunning];
+    
+    // AfterTakePhotViewControllerのインスタンス化
+    AfterTakePhotViewController *AfterTakePhotVC =  [self.storyboard instantiateViewControllerWithIdentifier:@"AfterTakePhotViewController"];
+    
+    // AfterTakePhotViewControllerの起動
+    [self presentViewController:AfterTakePhotVC animated:YES completion:nil];
     
 }
 

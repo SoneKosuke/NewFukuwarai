@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface AfterTakePhotViewController : ViewController
+@interface AfterTakePhotViewController : ViewController<UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
