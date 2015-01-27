@@ -22,7 +22,6 @@
 		89514D671A74DB99009E0DAD /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89514D631A74DB99009E0DAD /* haarcascade_frontalface_alt.xml */; };
 		89514D681A74DB99009E0DAD /* haarcascade_mcs_nose.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89514D641A74DB99009E0DAD /* haarcascade_mcs_nose.xml */; };
 		89514D691A74DB99009E0DAD /* haarcascade_mcs_mouth.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89514D651A74DB99009E0DAD /* haarcascade_mcs_mouth.xml */; };
-		89514D6D1A751CE6009E0DAD /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89514D6C1A751CE6009E0DAD /* TableViewController.m */; };
 		89B3157B1A77326C00014D05 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89514D6E1A75D30A009E0DAD /* AssetsLibrary.framework */; };
 		89B3157D1A77E20100014D05 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B3157C1A77E20100014D05 /* CoreGraphics.framework */; };
 		89B3157F1A77E21000014D05 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B3157E1A77E21000014D05 /* QuartzCore.framework */; };
@@ -63,8 +62,6 @@
 		89514D631A74DB99009E0DAD /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_frontalface_alt.xml; path = ../../../opencv/data/haarcascades/haarcascade_frontalface_alt.xml; sourceTree = "<group>"; };
 		89514D641A74DB99009E0DAD /* haarcascade_mcs_nose.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_mcs_nose.xml; path = "../../../../../../Downloads/ios-face-detection-d35a62f475aa/OpenCV-2.2.0/haarcascades/haarcascade_mcs_nose.xml"; sourceTree = "<group>"; };
 		89514D651A74DB99009E0DAD /* haarcascade_mcs_mouth.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_mcs_mouth.xml; path = "../../../../../../Downloads/ios-face-detection-d35a62f475aa 3/OpenCV-2.2.0/haarcascades/haarcascade_mcs_mouth.xml"; sourceTree = "<group>"; };
-		89514D6B1A751CE6009E0DAD /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		89514D6C1A751CE6009E0DAD /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		89514D6E1A75D30A009E0DAD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		89B3157C1A77E20100014D05 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		89B3157E1A77E21000014D05 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -100,6 +97,7 @@
 		894F3D741A5FC29600552369 = {
 			isa = PBXGroup;
 			children = (
+				894F3DA91A5FC42F00552369 /* AVFoundation.framework */,
 				89B315831A77E79600014D05 /* UIKit.framework */,
 				89B3157E1A77E21000014D05 /* QuartzCore.framework */,
 				89B3157C1A77E20100014D05 /* CoreGraphics.framework */,
@@ -130,15 +128,12 @@
 				89514D5E1A735A5C009E0DAD /* AfterTakePhotViewController.mm */,
 				894F3D8A1A5FC29600552369 /* ViewController.h */,
 				894F3D8B1A5FC29600552369 /* ViewController.m */,
-				894F3D8D1A5FC29600552369 /* Main.storyboard */,
 				89B315801A77E59400014D05 /* ThumViewController.h */,
 				89B315811A77E59400014D05 /* ThumViewController.m */,
-				89514D6B1A751CE6009E0DAD /* TableViewController.h */,
-				89514D6C1A751CE6009E0DAD /* TableViewController.m */,
+				894F3D8D1A5FC29600552369 /* Main.storyboard */,
 				894F3D901A5FC29600552369 /* Images.xcassets */,
 				894F3D921A5FC29600552369 /* LaunchScreen.xib */,
 				894F3D871A5FC29600552369 /* Fuwarai_Test.xcdatamodeld */,
-				894F3DA91A5FC42F00552369 /* AVFoundation.framework */,
 				894F3D801A5FC29600552369 /* Supporting Files */,
 			);
 			path = Fuwarai_Test;
@@ -287,7 +282,6 @@
 			files = (
 				894F3D861A5FC29600552369 /* AppDelegate.m in Sources */,
 				89B315821A77E59400014D05 /* ThumViewController.m in Sources */,
-				89514D6D1A751CE6009E0DAD /* TableViewController.m in Sources */,
 				89514D5F1A735A5C009E0DAD /* AfterTakePhotViewController.mm in Sources */,
 				894F3D831A5FC29600552369 /* main.m in Sources */,
 				894F3D8C1A5FC29600552369 /* ViewController.m in Sources */,

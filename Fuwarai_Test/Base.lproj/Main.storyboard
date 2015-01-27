@@ -15,12 +15,62 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="faceOutLine" translatesAutoresizingMaskIntoConstraints="NO" id="DeM-WV-lAT">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="340" id="A3C-hn-cHx">
+                                        <variation key="widthClass=compact" constant="394"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="320" id="fj0-hF-wP9">
+                                        <variation key="widthClass=compact" constant="378"/>
+                                    </constraint>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="A3C-hn-cHx"/>
+                                        <exclude reference="fj0-hF-wP9"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="A3C-hn-cHx"/>
+                                        <include reference="fj0-hF-wP9"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="DeM-WV-lAT" secondAttribute="centerX" constant="-0.5" id="DDi-0k-RZh"/>
+                            <constraint firstAttribute="centerY" secondItem="DeM-WV-lAT" secondAttribute="centerY" constant="0.5" id="eGk-uF-roR"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="DeM-WV-lAT"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="DDi-0k-RZh"/>
+                                <exclude reference="eGk-uF-roR"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="DeM-WV-lAT"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="DDi-0k-RZh"/>
+                                <include reference="eGk-uF-roR"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="faceView" destination="DeM-WV-lAT" id="eFn-YE-NmE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="123" y="127"/>
+            <point key="canvasLocation" x="99" y="127.5"/>
         </scene>
         <!--After Take Phot View Controller-->
         <scene sceneID="fhq-xf-Are">
@@ -99,8 +149,7 @@
                                         <exclude reference="ZfT-Ab-Cx3"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="225" y="158" width="90" height="80"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="NAp-GU-iuD"/>
                                         <include reference="ZfT-Ab-Cx3"/>
@@ -183,7 +232,7 @@
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="vg6-uR-Al7" secondAttribute="centerX" constant="-85.5" id="cCm-Ho-dUg">
-                                <variation key="widthClass=compact" constant="-100"/>
+                                <variation key="widthClass=compact" constant="-70"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="vg6-uR-Al7" secondAttribute="centerY" constant="117" id="f1l-Iz-Zx9">
                                 <variation key="widthClass=compact" constant="102"/>
@@ -271,31 +320,6 @@
             </objects>
             <point key="canvasLocation" x="823.5" y="127"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="F52-Fq-5OT">
-            <objects>
-                <tableViewController storyboardIdentifier="TableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UNG-at-Z2u" customClass="TableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JRf-eZ-J32">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="u2d-aG-Uz4">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u2d-aG-Uz4" id="rgf-MZ-WXq">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="UNG-at-Z2u" id="1u5-bz-9eP"/>
-                            <outlet property="delegate" destination="UNG-at-Z2u" id="ncA-7A-Mib"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cgy-4V-iRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="831" y="809"/>
-        </scene>
         <!--Thum View Controller-->
         <scene sceneID="TED-RL-1vd">
             <objects>
@@ -314,4 +338,7 @@
             <point key="canvasLocation" x="1578" y="127"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="faceOutLine" width="98" height="114"/>
+    </resources>
 </document>

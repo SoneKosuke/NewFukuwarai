@@ -10,6 +10,7 @@
 
 @interface ViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView* faceView;
 
 @end
 

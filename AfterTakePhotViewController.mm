@@ -261,8 +261,7 @@
             CGImageRef srcImageRef = [_origImage CGImage];
             CGImageRef trimmedImageRef = CGImageCreateWithImageInRect(srcImageRef, trimArea);
             _noseImage = [UIImage imageWithCGImage:trimmedImageRef];
-            
-            // 切り取り画像の表示
+                        
             self.nose.image = _noseImage;
             
         }
@@ -317,6 +316,7 @@
     return newImage;
 }
 
+// UIImageからMatに変換
 - (cv::Mat)cvMatFromUIImage:(UIImage *)image
 {
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
@@ -341,6 +341,7 @@
     return cvMat;
 }
 
+// MatからUIImageへ変換
 -(UIImage *)UIImageFromCVMat:(cv::Mat)cvMat
 {
     NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize()*cvMat.total()];
@@ -378,6 +379,14 @@
     return finalImage;
 }
 
+// パーツ画像の面取り処理
+- (void)clipToCircle:(UIImageView *)imageView
+{
+    imageView.layer.cornerRadius = imageView.frame.size.width * 0.5f;
+    imageView.clipsToBounds = YES;
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -393,10 +402,12 @@
 }
 */
 
+// 撮影ボタンが押された時
 - (void)takePhotBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+// 保存・シェアボタンが押された時
 - (void) share:(id)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"保存・シェア"
                                                              delegate:self
