@@ -9,14 +9,13 @@
 #import "ViewController.h"
 #import "AfterTakePhotViewController.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import "ThumViewController.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) AVCaptureDeviceInput *videoInput;
 @property (strong, nonatomic) AVCaptureStillImageOutput *stillImageOutput;
 @property (strong, nonatomic) AVCaptureSession *session;
 @property (strong, nonatomic) UIView *previewView;
-
 
 @end
 
@@ -70,7 +69,6 @@
     }
 }
 
-
 - (void)tearDownAVCapture
 {
     // メモリの解放処理
@@ -85,7 +83,6 @@
     self.videoInput = nil;
     self.session = nil;
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -129,18 +126,32 @@
     
     // セッション開始
     [self.session startRunning];
-    
 }
 
 - (void)album:(id)sender {
     NSLog(@"album選択");
+    
+    int status = 1;
+    //ユーザデフォルトに書き込む
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:status forKey:@"status"];
+    [defaults synchronize];
+    
+    // モーダルビューを閉じる
+    [self.session stopRunning];
+    
+    // ThumViewControllerのインスタンス化
+    ThumViewController *ThumViewController =  [self.storyboard instantiateViewControllerWithIdentifier:@"ThumViewController"];
+    
+    // ThumViewControllerの起動
+    [self presentViewController:ThumViewController animated:YES completion:nil];
+    
 }
 
 - (void)takePhoto:(id)sender
 {
     // ビデオ入力のAVCaptureConnectionを取得
     AVCaptureConnection *videoConnection = [self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
-    
     if (videoConnection == nil) {
         return;
     }
@@ -176,9 +187,6 @@
              NSLog(@"save NG");
          }
          
-//         // アルバムに画像を保存
-//         UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
-         
          int status = 1;
          //ユーザデフォルトに書き込む
          NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -206,6 +214,7 @@
         [self presentViewController:picker animated:YES completion:NULL];
     }
 }
+
 
 // フロントカメラへ
 - (AVCaptureDevice *)frontFacingCameraIfAvailable
@@ -240,12 +249,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     
     NSLog(@"%@", image);
     // 入力された画像データからJPEGフォーマットとしてデータを取得
-
     
-    // 選択された画像データをNSDataに変換 jpegStillImageNSDataRepresentation
+    // 選択された画像データをNSDataに変換
     NSData *imageData = UIImageJPEGRepresentation(image, 1);
-    
-   // NSLog(@"imageData%@",imageData);
     
     // 保存するディレクトリを指定します
     NSString *path = [NSString stringWithFormat:@"%@/sample.jpg",

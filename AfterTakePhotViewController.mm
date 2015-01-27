@@ -10,6 +10,9 @@
 #import <opencv2/opencv.hpp>
 #import <opencv2/imgcodecs/ios.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface AfterTakePhotViewController (){
     UIImage* _origImage;
@@ -26,7 +29,6 @@
     
     //アルバムが写真アプリに既にあるかどうかの判定用
     BOOL _albumWasFound;
-
 }
 
 @end
@@ -82,7 +84,6 @@
     _noseImage = self.nose.image;
     _lefteyeImage = self.lefteye.image;
     _righteyeImage = self.righteye.image;
-
     
     int count = 0;
     
@@ -94,8 +95,6 @@
     [_origImage drawInRect:CGRectMake(0, 0, _origImage.size.width, _origImage.size.height)];
     _origImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-
     
     // imageをmat形式に変換
     cv::Mat baseMat = [self cvMatFromUIImage:_origImage];
@@ -180,6 +179,7 @@
         cv:: Mat smallImgROIEye = baseMat(*r);
         std::vector<cv::Rect> nestedObjectsEye;
         cascadeName_Eye.detectMultiScale(smallImgROIEye, nestedObjectsEye, 1.3, 3, cv::CASCADE_SCALE_IMAGE, cv::Size(30,30));
+        
         // 画像，出力矩形，縮小スケール，最低矩形数，（フラグ），最小矩形
         cv:: Mat smallImgROINose = baseMat(*r);
         std::vector<cv::Rect> nestedObjectsNose;
@@ -235,8 +235,6 @@
                 
                 self.lefteye.image =_eyesImage;
             }
-            
-            
         }
         
         // 検出結果（鼻）の描画
@@ -299,137 +297,15 @@
             CGImageRef trimmedImageRef = CGImageCreateWithImageInRect(srcImageRef, trimArea);
             _mouthImage = [UIImage imageWithCGImage:trimmedImageRef];
             
-            float heightO = _origImage.size.height;
-            float widthO = _origImage.size.width;
-            
-            NSLog(@"%f",heightO);
-            NSLog(@"%f",widthO);
-            
             // 切り取り画像の表示
             self.mouth.image = _mouthImage;
-            
         }
     }
     
     // 変換結果を画面に表示
-    self.imageView.image = MatToUIImage(baseMat);
-    
+    _origImage = MatToUIImage(baseMat);
+    self.imageView.image = _origImage;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (void)takePhotBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void) share:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"保存・シェア"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"キャンセル"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"保存", @"シェア", nil];
-    [actionSheet showInView:self.view];
-    
-
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 0:
-        {
-            NSLog(@"保存を選択");
-            //ALAssetLibraryのインスタン作成
-            _library = [[ALAssetsLibrary alloc] init];
-            _AlbumName = @"Fukuwarai";
-            _albumWasFound = FALSE;
-            
-            //アルバムを検索してなかったら新規作成、あったらアルバムのURLを保持
-            [_library enumerateGroupsWithTypes:ALAssetsGroupAlbum
-                                    usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-                                        
-                                        if (group) {
-                                            if ([_AlbumName compare:[group valueForProperty:ALAssetsGroupPropertyName]] == NSOrderedSame) {
-                                                
-                                                //URLをクラスインスタンスに保持
-                                                _groupURL = [group valueForProperty:ALAssetsGroupPropertyURL];
-                                                _albumWasFound = TRUE;
-                                                
-                                                //アルバムがない場合は新規作成
-                                            }else if (_albumWasFound==FALSE) {
-                                                
-                                                ALAssetsLibraryGroupResultBlock resultBlock = ^(ALAssetsGroup *group) {
-                                                    _groupURL = [group valueForProperty:ALAssetsGroupPropertyURL];
-                                                };
-                                                
-                                                //新しいアルバムを作成
-                                                [_library addAssetsGroupAlbumWithName:_AlbumName
-                                                                          resultBlock:resultBlock
-                                                                         failureBlock: nil];
-                                                
-                                                _albumWasFound = TRUE;
-                                            }
-                                        }
-                                        
-                                    } failureBlock:nil];
-            
-            
-            //カメラロールにUIImageを保存する。保存完了後、completionBlockで「NSURL* assetURL」が取得できる
-            [_library writeImageToSavedPhotosAlbum:_origImage.CGImage
-                                       orientation:(ALAssetOrientation)_origImage.imageOrientation
-                                   completionBlock:^(NSURL* assetURL, NSError* error) {
-                                       
-                                       //アルバムにALAssetを追加するメソッド
-                                       [self addAssetURL:assetURL AlbumURL:_groupURL];}];
-                                        break;
-        }
-        case 1:
-            NSLog(@"シェアを選択");
-            break;
-        default:
-            NSLog(@"キャンセルボタンがクリックされました");
-            break;
-    }
-}
-
-//アルバムにALAssetを追加するメソッド
-- (void)addAssetURL:(NSURL*)assetURL AlbumURL:(NSURL *)albumURL{
-    
-    //URLからGroupを取得
-    [_library groupForURL:albumURL
-              resultBlock:^(ALAssetsGroup *group){
-                  
-                  NSLog(@"%@", group);
-                  
-                  //URLからALAssetを取得
-                  [_library assetForURL:assetURL
-                            resultBlock:^(ALAsset *asset) {
-                                
-                                if (group.editable) {
-                                    //GroupにAssetを追加
-                                    [group addAsset:asset];
-                                }
-                                
-                            } failureBlock: nil];
-              } failureBlock:nil];
-}
-
-
-
 
 // イメージをリサイズする
 - (UIImage *)resizeImage:(UIImage *)image newSize:(CGSize)newSize
@@ -440,7 +316,6 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
-
 
 - (cv::Mat)cvMatFromUIImage:(UIImage *)image
 {
@@ -502,6 +377,133 @@
     
     return finalImage;
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+- (void)takePhotBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) share:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"保存・シェア"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"キャンセル"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"保存", @"シェア", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+        {
+            NSLog(@"保存を選択");
+            
+            // キャプチャ対象をWindowにします。
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            
+            // キャプチャ画像を描画する対象を生成します。
+            UIGraphicsBeginImageContextWithOptions(window.bounds.size, NO, 0.0f);
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            
+            // Windowの現在の表示内容を１つずつ描画して行きます。
+            for (UIWindow *aWindow in [[UIApplication sharedApplication] windows]) {
+                [aWindow.layer renderInContext:context];
+            }
+            
+            // 描画した内容をUIImageとして受け取ります。
+            UIImage *capturedImage = UIGraphicsGetImageFromCurrentImageContext();
+            
+            // 描画を終了します。
+            UIGraphicsEndImageContext();
+            
+            // ALAssetLibraryのインスタン作成
+            _library = [[ALAssetsLibrary alloc] init];
+            _AlbumName = @"123";
+            _albumWasFound = FALSE;
+            
+            // アルバムを検索してなかったら新規作成、あったらアルバムのURLを保持
+            [_library enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                if (group) {
+                    if ([_AlbumName compare:[group valueForProperty:ALAssetsGroupPropertyName]] == NSOrderedSame) {
+
+                        // URLをクラスインスタンスに保持
+                        _groupURL = [group valueForProperty:ALAssetsGroupPropertyURL];
+                        _albumWasFound = TRUE;
+                        
+                    // アルバムがない場合は新規作成
+                    }else if (_albumWasFound == FALSE) {
+                        ALAssetsLibraryGroupResultBlock resultBlock = ^(ALAssetsGroup *group) {
+                        _groupURL = [group valueForProperty:ALAssetsGroupPropertyURL];
+                    };
+                                                
+                    // 新しいアルバムを作成
+                    [_library addAssetsGroupAlbumWithName:_AlbumName resultBlock:resultBlock failureBlock: nil];
+                        _albumWasFound = TRUE;
+                    }
+                }
+            } failureBlock:nil];
+            
+            // カメラロールにUIImageを保存する。保存完了後、completionBlockで「NSURL* assetURL」が取得できる
+            [_library writeImageToSavedPhotosAlbum:capturedImage.CGImage orientation:(ALAssetOrientation)capturedImage.imageOrientation completionBlock:^(NSURL* assetURL, NSError* error) {
+                
+                // アルバムにALAssetを追加するメソッド
+                [self addAssetURL:assetURL AlbumURL:_groupURL];
+                }
+             ];
+
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+            break;
+        case 1:
+            NSLog(@"シェアを選択");
+            break;
+        default:
+            NSLog(@"キャンセルボタンがクリックされました");
+            break;
+    }
+}
+
+// アルバムにALAssetを追加するメソッド
+- (void)addAssetURL:(NSURL*)assetURL AlbumURL:(NSURL *)albumURL{
+    
+    // URLからGroupを取得
+    [_library groupForURL:albumURL resultBlock:^(ALAssetsGroup *group){
+        
+        // URLからALAssetを取得
+        [_library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+            if (group.editable) {
+                
+                // GroupにAssetを追加
+                [group addAsset:asset];
+
+            } else {
+
+            }
+        } failureBlock: nil];
+    } failureBlock:nil];
+}
+
+- (void) assetsLibraryDidChange:(id)sender
+{
+    NSLog(@"hogehoge" );
+    
+}
+
 
 - (IBAction)rightEyemove:(UIPanGestureRecognizer *)sender {
     CGPoint rightEyemove = [sender translationInView:self.righteye];
