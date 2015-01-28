@@ -170,6 +170,10 @@
          // 入力された画像データからJPEGフォーマットとしてデータを取得
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
          
+         UIImage *cameraRoll = [[UIImage alloc]initWithData:imageData];
+         // 取得画像をカメラロールに保存
+         UIImageWriteToSavedPhotosAlbum(cameraRoll, nil, nil, nil);
+         
          // 保存するディレクトリを指定します
          // ここではデータを保存する為に一般的に使われるDocumentsディレクトリ
          NSString *path = [NSString stringWithFormat:@"%@/sample.jpg",
@@ -249,9 +253,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    NSLog(@"%@", image);
-    // 入力された画像データからJPEGフォーマットとしてデータを取得
-    
     // 選択された画像データをNSDataに変換
     NSData *imageData = UIImageJPEGRepresentation(image, 1);
     
@@ -272,7 +273,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     } else {
         NSLog(@"save NG");
     }
-
+    
     int status = 1;
     //ユーザデフォルトに書き込む
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

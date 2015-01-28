@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface AfterTakePhotViewController : ViewController<UIActionSheetDelegate>
+@interface AfterTakePhotViewController : ViewController<UIActionSheetDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
@@ -20,5 +20,9 @@
 - (IBAction)leftEyeMove:(UIPanGestureRecognizer *)sender;
 - (IBAction)noseMove:(UIPanGestureRecognizer *)sender;
 - (IBAction)mouthMove:(UIPanGestureRecognizer *)sender;
+- (IBAction)nosePinch:(UIPinchGestureRecognizer *)sender;
+- (IBAction)mouthPinch:(UIPinchGestureRecognizer *)sender;
+- (IBAction)leftEyePinch:(UIPinchGestureRecognizer *)sender;
+- (IBAction)rightEyePinch:(UIPinchGestureRecognizer *)sender;
 
 @end

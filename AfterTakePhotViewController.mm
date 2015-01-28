@@ -22,13 +22,13 @@
     UIImage* _noseImage;
     UIImage* _gryImage;
     UIImage* _eyesImage;
-    
     ALAssetsLibrary *_library;
     NSURL *_groupURL;
     NSString *_AlbumName;
     
     //アルバムが写真アプリに既にあるかどうかの判定用
     BOOL _albumWasFound;
+    CGAffineTransform currentTransForm;
 }
 
 @end
@@ -222,6 +222,10 @@
                 _eyesImage = [UIImage imageWithCGImage:trimmedImageRef];
                 
                 self.righteye.image = _eyesImage;
+                // 切り出し画像の面取り
+                _righteye.layer.cornerRadius = _righteye.frame.size.width * 0.1f;
+                _righteye.clipsToBounds = YES;
+                
                 count ++;
             } else if (count == 1) {
                 
@@ -234,6 +238,9 @@
                 _eyesImage = [UIImage imageWithCGImage:trimmedImageRef];
                 
                 self.lefteye.image =_eyesImage;
+                // 切り出し画像の面取り
+                _lefteye.layer.cornerRadius = _lefteye.frame.size.width * 0.1f;
+                _lefteye.clipsToBounds = YES;
             }
         }
         
@@ -263,6 +270,9 @@
             _noseImage = [UIImage imageWithCGImage:trimmedImageRef];
                         
             self.nose.image = _noseImage;
+            // 切り出し画像の面取り
+            _nose.layer.cornerRadius = _nose.frame.size.width * 0.1f;
+            _nose.clipsToBounds = YES;
             
         }
         
@@ -298,6 +308,10 @@
             
             // 切り取り画像の表示
             self.mouth.image = _mouthImage;
+            // 切り出し画像の面取り
+            _mouth.layer.cornerRadius = _mouth.frame.size.width * 0.1f;
+            _mouth.clipsToBounds = YES;
+            
         }
     }
     
@@ -379,14 +393,6 @@
     return finalImage;
 }
 
-// パーツ画像の面取り処理
-- (void)clipToCircle:(UIImageView *)imageView
-{
-    imageView.layer.cornerRadius = imageView.frame.size.width * 0.5f;
-    imageView.clipsToBounds = YES;
-}
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -445,7 +451,7 @@
             // ALAssetLibraryのインスタン作成
             _library = [[ALAssetsLibrary alloc] init];
             _AlbumName = @"123";
-            _albumWasFound = FALSE;
+            _albumWasFound = true;
             
             // アルバムを検索してなかったら新規作成、あったらアルバムのURLを保持
             [_library enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
@@ -554,6 +560,43 @@
     _mouth.center = homeLoc;
     
     [sender setTranslation:CGPointZero inView:self.mouth];
+}
+
+- (IBAction)nosePinch:(UIPinchGestureRecognizer *)sender {
+    // ピンチジェスチャー発生時に、Imageの現在のアフィン変形の状態を保存する
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        currentTransForm = self.nose.transform;
+    }
+    
+    // ピンチジェスチャー発生時から、どれだけ拡大率が変化したかを取得する
+    // 2本の指の距離が離れた場合には、1以上の値、近づいた場合には、1以下の値が取得できる
+    CGFloat scale = [sender scale];
+    // ピンチジェスチャー開始時からの拡大率の変化を、imgViewのアフィン変形の状態に設定する事で、拡大する。
+    self.nose.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(scale, scale));
+}
+
+- (IBAction)mouthPinch:(UIPinchGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        currentTransForm = self.mouth.transform;
+    }
+    CGFloat scale = [sender scale];
+    self.mouth.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(scale, scale));
+}
+
+- (IBAction)leftEyePinch:(UIPinchGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        currentTransForm = self.lefteye.transform;
+    }
+    CGFloat scale = [sender scale];
+    self.lefteye.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(scale, scale));
+}
+
+- (IBAction)rightEyePinch:(UIPinchGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        currentTransForm = self.righteye.transform;
+    }
+    CGFloat scale = [sender scale];
+    self.righteye.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(scale, scale));
 }
 
 
