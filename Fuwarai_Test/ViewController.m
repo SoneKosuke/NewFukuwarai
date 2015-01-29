@@ -11,7 +11,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ThumViewController.h"
 
-@interface ViewController ()
+@interface ViewController () {
+    NSInteger cameraPosition;
+}
 @property (strong, nonatomic) AVCaptureDeviceInput *videoInput;
 @property (strong, nonatomic) AVCaptureStillImageOutput *stillImageOutput;
 @property (strong, nonatomic) AVCaptureSession *session;
@@ -38,11 +40,11 @@
         UIToolbar *toolbarunder = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50)];
         toolbarunder.translucent = YES;
         
-        // アルバムを生成する
+        // アルバムボタンを生成する
         UIBarButtonItem *album = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
                                                                                 target:self
                                                                                 action:@selector(album:)];
-        // カメラマークを生成する
+        // カメラマークボタンを生成する
         UIBarButtonItem *camera = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
                                                                             target:self
                                                                             action:@selector(takePhoto:)];
@@ -50,7 +52,7 @@
         UIBarButtonItem *spacer = [[UIBarButtonItem alloc]
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                target:nil action:nil];
-        // ライブラリを生成する
+        // ライブラリボタンを生成する
         UIBarButtonItem *library = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
                                                                              target:self
                                                                              action:@selector(openLibrary:)];
@@ -61,11 +63,27 @@
         
         toolbarunder.items = itemsunder;
         [self.view addSubview:toolbarunder];
+        
+        // 撮影ボタンを配置したツールバーを生成（上）
+        UIToolbar *toolbartop = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
+        toolbartop.translucent = YES;
+        
+        // カメラの切り替えボタンを生成する
+        UIBarButtonItem *turnover = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                                                               target:self
+                                                                               action:@selector(turnover:)];
+        
+        // toolbarunderにbuttonを配置
+        NSArray *itemstop = [NSArray arrayWithObjects:turnover, spacer, nil];
+        
+        toolbartop.items = itemstop;
+        [self.view addSubview:toolbartop];
+        
     
         // プレビュー用のビューを生成
-        self.previewView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,
+        self.previewView = [[UIView alloc] initWithFrame:CGRectMake(0, toolbartop.frame.size.height,
                                                                 self.view.bounds.size.width,
-                                                                self.view.bounds.size.height - (toolbarunder.frame.size.height))];
+                                                                self.view.bounds.size.height - 2*(toolbarunder.frame.size.height))];
         
         [self.view addSubview:self.previewView];
     }
@@ -105,11 +123,33 @@
     // 入力と出力からキャプチャーセッションを作成
     self.session = [[AVCaptureSession alloc] init];
     
-    // 正面に配置されているカメラを取得
-    AVCaptureDevice *camera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    // デバイスの設定
+    NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    AVCaptureDevice *captureDevice = nil;
+    
+    switch (cameraPosition) {
+        case 0:
+        {   // バックカメラを使用
+            captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+        }
+            break;
+        default:
+        {
+            // フロントカメラを使用
+            for (AVCaptureDevice *device in videoDevices)
+            {
+                if (device.position == AVCaptureDevicePositionFront)
+                {
+                    captureDevice = device;
+                    break;
+                }
+            }
+        }
+            break;
+    }
     
     // カメラからの入力を作成し、セッションに追加
-    self.videoInput = [[AVCaptureDeviceInput alloc] initWithDevice:camera error:&error];
+    self.videoInput = [[AVCaptureDeviceInput alloc] initWithDevice:captureDevice error:&error];
     [self.session addInput:self.videoInput];
     
     // 画像への出力を作成し、セッションに追加
@@ -130,6 +170,21 @@
     [self.session startRunning];
 }
 
+// カメラの切り替え
+- (void)turnover:(id)sender {
+    if (cameraPosition == 0) {
+        cameraPosition = 1;
+        [self.session stopRunning];
+        [self setupAVCapture];
+
+    } else {
+        cameraPosition = 0;
+        [self.session stopRunning];
+        [self setupAVCapture];
+    }
+}
+
+// アルバムへ
 - (void)album:(id)sender {
     NSLog(@"album選択");
     
@@ -150,6 +205,7 @@
     
 }
 
+// シャッター
 - (void)takePhoto:(id)sender
 {
     // ビデオ入力のAVCaptureConnectionを取得
@@ -211,6 +267,7 @@
      }];
 }
 
+// カメラロールから写真を選択
 - (void)openLibrary:(id)sender {
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
@@ -220,32 +277,6 @@
         [self presentViewController:picker animated:YES completion:NULL];
     }
 }
-
-
-// フロントカメラへ
-- (AVCaptureDevice *)frontFacingCameraIfAvailable
-{
-    //  look at all the video devices and get the first one that's on the front
-    NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-    AVCaptureDevice *captureDevice = nil;
-    for (AVCaptureDevice *device in videoDevices)
-    {
-        if (device.position == AVCaptureDevicePositionFront)
-        {
-            captureDevice = device;
-            break;
-        }
-    }
-    
-    //  couldn't find one on the front, so just get the default video device.
-    if ( ! captureDevice)
-    {
-        captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    }
-    
-    return captureDevice;
-}
-
 
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
