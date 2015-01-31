@@ -17,7 +17,7 @@
     ALAssetsLibrary *_library;
     NSString *_AlbumName;
     NSMutableArray *_AlAssetsArr;
-//    NSMutableArray *photimage;
+
 }
 @property (nonatomic, weak) NSMutableArray *photoImages;
 @property  int countPhot;
@@ -35,12 +35,6 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:status forKey:@"status"];
     [defaults synchronize];
-    
-    NSString *hogehoge = @"hogehoge";
-    NSUserDefaults* defaultshogehoge = [NSUserDefaults standardUserDefaults];
-    [defaultshogehoge setObject:hogehoge forKey:@"defaultshogehoge"];
-    [defaultshogehoge synchronize];
-    NSLog(@"%@", hogehoge);
     
     // 撮影ボタンを配置したツールバーを生成
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50)];
@@ -60,9 +54,71 @@
     
     [self.view addSubview:toolbar];
     
+    // アルバムの写真をカメラロールから取得
+    _library = [[ALAssetsLibrary alloc] init];
+    _AlbumName = @"123";
+    _AlAssetsArr = [NSMutableArray array];
+    NSMutableArray *imageList = [NSMutableArray new];
+    NSMutableArray *imageDateList = [NSMutableArray new];
+    
+    
+    // AlAssetsLibraryからALAssetGroupを検索
+    [_library enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        // ALAssetsLibraryのすべてのアルバムが列挙される
+        if (group) {
+            // アルバム名が「_AlbumName」と同一だった時の処理
+            if ([_AlbumName compare:[group valueForProperty:ALAssetsGroupPropertyName]] == NSOrderedSame) {
+                // assetsEnumerationBlock
+                ALAssetsGroupEnumerationResultsBlock assetsEnumerationBlock = ^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                    
+                    if (result) {
+                        // asset をNSMutableArraryに格納
+                        [_AlAssetsArr addObject:result];
+                        
+                    }else{
+                        // NSMutableArraryに格納後の処理
+                        for (int i=0; i<[_AlAssetsArr count]; i++) {
+                            
+                            // ALAssetからサムネール画像を取得してUIImageに変換
+                            UIImage *image = [UIImage imageWithCGImage:[[_AlAssetsArr objectAtIndex:i] thumbnail]];
+                            NSData* imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(image, 0)];
+                            [imageList addObject:imageData];
+                            
+                            // exifデータの取得
+                            NSData *imageSaveDate = [[NSData alloc] init];
+                            imageSaveDate = [[_AlAssetsArr objectAtIndex:i ] valueForProperty:ALAssetPropertyDate];
+                            
+                            [imageDateList addObject:imageSaveDate];
+                            
+                        }
+                    }
+                };
+                
+                // アルバム(group)からALAssetの取得
+                [group enumerateAssetsUsingBlock:assetsEnumerationBlock];
+                
+            }
+        } else {
+            // 取得されたアルバムデータを取得
+            NSUserDefaults* defaultsAlbumPhoto = [NSUserDefaults standardUserDefaults];
+            [defaultsAlbumPhoto setObject:imageList forKey:@"defaultsAlbumPhoto"];
+            [defaultsAlbumPhoto synchronize];
+            
+            NSUserDefaults* defaultsAlbumPhotoDate = [NSUserDefaults standardUserDefaults];
+            [defaultsAlbumPhotoDate setObject:imageDateList forKey:@"defaultsAlbumPhotoDate"];
+            [defaultsAlbumPhotoDate synchronize];
+            
+            NSLog(@"imageSaveDate%@", imageDateList);
+            NSLog(@"imageSaveDate%@", [imageDateList class]);
+            
+        }
+    } failureBlock:nil];
+
     // アルバム写真データの読み出し
+
     NSUserDefaults *defaultsAlbumPhoto = [NSUserDefaults standardUserDefaults];
     _photoImages = [defaultsAlbumPhoto objectForKey:@"defaultsAlbumPhoto"];
+
 }
 
 
@@ -87,10 +143,13 @@ NSLog(@"photoImages count%lu", (unsigned long)[_photoImages count]);
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AlbumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-   
-    //ユーザデフォルトに書き込む
-    UIImage *image = [[UIImage alloc] initWithData:_photoImages[indexPath.row]];
-    [cell setData:image];
+
+    NSInteger row = indexPath.row;
+    
+    [cell setData:indexPath];
+    
+
+    
     return cell;
     // reload tableview
 }

@@ -367,6 +367,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="AlbumTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="t8S-54-1bl" customClass="AlbumTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="114" sectionHeaderHeight="22" sectionFooterHeight="22" id="0lK-nf-FHe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -387,7 +388,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="184" y="44" width="122" height="32"/>
+                                                <rect key="frame" x="152" y="44" width="208" height="32"/>
                                             </variation>
                                         </label>
                                     </subviews>

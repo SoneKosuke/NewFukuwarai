@@ -437,9 +437,13 @@
                 }
             } failureBlock:nil];
             
+            // 値とキー値を指定した生成例
+            NSDictionary *metadata = [NSDictionary dictionaryWithObject:@"hoge" forKey:@"Key"];
+            
             // カメラロールにUIImageを保存する。保存完了後、completionBlockで「NSURL* assetURL」が取得できる
-            [_library writeImageToSavedPhotosAlbum:capturedImage.CGImage orientation:(ALAssetOrientation)capturedImage.imageOrientation completionBlock:^(NSURL* assetURL, NSError* error) {
-                
+//            [_library writeImageToSavedPhotosAlbum:capturedImage.CGImage orientation:(ALAssetOrientation)capturedImage.imageOrientation completionBlock:^(NSURL* assetURL, NSError* error) {
+
+            [_library writeImageToSavedPhotosAlbum:capturedImage.CGImage metadata:metadata completionBlock:^(NSURL* assetURL, NSError* error) {
                 // アルバムにALAssetを追加するメソッド
                 [self addAssetURL:assetURL AlbumURL:_groupURL];
                 }

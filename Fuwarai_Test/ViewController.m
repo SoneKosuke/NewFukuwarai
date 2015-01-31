@@ -12,6 +12,7 @@
 #import "ThumViewController.h"
 #import "AlbumTableViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <ImageIO/ImageIO.h>
 
 @interface ViewController () {
     ALAssetsLibrary *_library;
@@ -91,54 +92,9 @@
                                                                 self.view.bounds.size.height - 2*(toolbarunder.frame.size.height))];
         
         [self.view addSubview:self.previewView];
-        
-        // アルバムの写真をカメラロールから取得
-        _library = [[ALAssetsLibrary alloc] init];
-        _AlbumName = @"123";
-        _AlAssetsArr = [NSMutableArray array];
-        NSMutableArray *imageList = [NSMutableArray new];
-        
-        // AlAssetsLibraryからALAssetGroupを検索
-        [_library enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-            // ALAssetsLibraryのすべてのアルバムが列挙される
-            if (group) {
-                // アルバム名が「_AlbumName」と同一だった時の処理
-                if ([_AlbumName compare:[group valueForProperty:ALAssetsGroupPropertyName]] == NSOrderedSame) {
-                    // assetsEnumerationBlock
-                    ALAssetsGroupEnumerationResultsBlock assetsEnumerationBlock = ^(ALAsset *result, NSUInteger index, BOOL *stop) {
-                        
-                        if (result) {
-                            // asset をNSMutableArraryに格納
-                            [_AlAssetsArr addObject:result];
-                            
-                        }else{
-                            // NSMutableArraryに格納後の処理
-                            for (int i=0; i<[_AlAssetsArr count]; i++) {
-                                
-                                // ALAssetからサムネール画像を取得してUIImageに変換
-                                UIImage *image = [UIImage imageWithCGImage:[[_AlAssetsArr objectAtIndex:i] thumbnail]];
-                                NSLog(@"image%@", image);
-//                                NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject:image];
-                                NSData* imageData = [[NSData alloc] initWithData:UIImagePNGRepresentation( image )];
-                                [imageList addObject:imageData];
-                            }
-                        }
-                    };
-                    
-                    // アルバム(group)からALAssetの取得
-                    [group enumerateAssetsUsingBlock:assetsEnumerationBlock];
-                    
-                }
-            } else {
-                // 取得されたアルバムデータを取得
-                NSUserDefaults* defaultsAlbumPhoto = [NSUserDefaults standardUserDefaults];
-                [defaultsAlbumPhoto setObject:imageList forKey:@"defaultsAlbumPhoto"];
-                [defaultsAlbumPhoto synchronize];
-                
-            }
-        } failureBlock:nil];
     }
-}
+    
+ }
 
 - (void)tearDownAVCapture
 {
