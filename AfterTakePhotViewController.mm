@@ -197,19 +197,6 @@
             eyes_center.y = cv::saturate_cast<int>((r->y + er->y + er->height*0.5));
             NSLog(@"eyes_center x:%d y:%d", eyes_center.x, eyes_center.y);
             
-            //            // 目の塗りつぶし
-            //            cv::rectangle(baseMat,
-            //                          cv::Point(eyes_center.x-30, eyes_center.y-25),
-            //                          cv::Point(eyes_center.x+30, eyes_center.y+25),
-            //                          cv::Scalar(244,202,172), -1);
-            //
-            //            // ガウシアンを用いた平滑化
-            //            cv::Rect roi_rect(eyes_center.x-20,eyes_center.y-10,60,40); // x,y,w,h
-            //            cv::Mat src_roi = baseMat(roi_rect);
-            //            cv::Mat dst_roi = baseMat(roi_rect);
-            
-            
-            
             // 切り取り画像の表示
             if ( count == 0 ) {
                 
@@ -252,17 +239,6 @@
             nose_center.y = cv::saturate_cast<int>((r->y + nr->y + nr->height*0.5));
             NSLog(@"nose_center x:%d y:%d", nose_center.x, nose_center.y);
             
-            //            // 鼻の塗りつぶし
-            //            cv::rectangle(baseMat,
-            //                          cv::Point(nose_center.x-25, nose_center.y-25),
-            //                          cv::Point(nose_center.x+25, nose_center.y+25),
-            //                          cv::Scalar(244,202,172), -1);
-            //
-            //            // ガウシアンを用いた平滑化
-            //            cv::Rect roi_rect(nose_center.x-25, nose_center.y-25, 50, 50); // x,y,w,h
-            //            cv::Mat src_roi = baseMat(roi_rect);
-            //            cv::Mat dst_roi = baseMat(roi_rect);
-            
             // CoreGraphicsの機能を用いて,切り抜いた画像を作成する。
             CGRect trimArea = CGRectMake( nose_center.x-25, nose_center.y-25, 50, 50);
             CGImageRef srcImageRef = [_origImage CGImage];
@@ -283,20 +259,6 @@
             mouth_center.x = cv::saturate_cast<int>((r->x + mr->x + mr->width*0.5));
             mouth_center.y = cv::saturate_cast<int>((r->y + mr->y + mr->height*0.5));
             NSLog(@"mouth_center x:%d y:%d", mouth_center.x, mouth_center.y);
-            
-            //            // 口の塗りつぶし
-            //            cv::rectangle(baseMat,
-            //                          cv::Point(mouth_center.x-40, mouth_center.y-20),
-            //                          cv::Point(mouth_center.x+40, mouth_center.y+20),
-            //                          cv::Scalar(244,202,172), -1);
-            
-            //            // ガウシアンを用いた平滑化
-            //            cv::Rect roi_rect(mouth_center.x-30,mouth_center.y-20,60,40); // x,y,w,h
-            //            cv::Mat src_roi = baseMat(roi_rect);
-            //            cv::Mat dst_roi = baseMat(roi_rect);
-            
-            // 入力画像，出力画像，カーネルサイズ，標準偏差x, y
-            //            cv::GaussianBlur(src_roi, dst_roi, cv::Size( 5, 5), 10, 10);
             
             // 切り取り
             CGRect trimArea = CGRectMake( mouth_center.x-40, mouth_center.y-20, 80, 40);
