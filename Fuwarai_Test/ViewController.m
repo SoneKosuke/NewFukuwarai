@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import "AfterTakePhotViewController.h"
 #import <AVFoundation/AVFoundation.h>
-#import "ThumViewController.h"
 #import "AlbumTableViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/ImageIO.h>

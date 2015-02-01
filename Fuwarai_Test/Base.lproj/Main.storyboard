@@ -422,6 +422,69 @@
             </objects>
             <point key="canvasLocation" x="3000" y="127"/>
         </scene>
+        <!--Phot Select View Controller-->
+        <scene sceneID="j75-Wl-zT0">
+            <objects>
+                <viewController storyboardIdentifier="PhotSelectViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hh2-nw-Rub" customClass="PhotSelectViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3aa-zG-1xY"/>
+                        <viewControllerLayoutGuide type="bottom" id="HjM-2h-qQ9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bex-BA-LVM">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pM1-PL-rOY">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="244" id="Qgv-Q7-mVw"/>
+                                    <constraint firstAttribute="height" constant="357" id="hhb-jV-rkm"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Qgv-Q7-mVw"/>
+                                        <exclude reference="hhb-jV-rkm"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Qgv-Q7-mVw"/>
+                                        <include reference="hhb-jV-rkm"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="pM1-PL-rOY" secondAttribute="centerX" id="5bN-78-pI5"/>
+                            <constraint firstAttribute="centerY" secondItem="pM1-PL-rOY" secondAttribute="centerY" constant="0.5" id="AFQ-eT-eOY"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="pM1-PL-rOY"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="5bN-78-pI5"/>
+                                <exclude reference="AFQ-eT-eOY"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="pM1-PL-rOY"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="5bN-78-pI5"/>
+                                <include reference="AFQ-eT-eOY"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="photoimage" destination="pM1-PL-rOY" id="zhT-CV-q6e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ilN-91-6Eu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3708" y="127"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="JR6-Ub-TlD">
             <objects>

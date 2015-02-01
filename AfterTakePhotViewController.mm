@@ -71,11 +71,9 @@
     // 保存した画像の読み出し
     NSUserDefaults *defaultphot = [NSUserDefaults standardUserDefaults];
     NSString *path = [defaultphot stringForKey:@"path"];
-    NSLog(@"%@", path);
     
     UIImage *image= [[UIImage alloc] initWithContentsOfFile:path];
     self.imageView.image = image;
-    NSLog(@"%@", image);
     
     // ImageView の Outlet として imageView を用意した。
     // imageView には予め画像を設定してあるので、ここで元の画像をとっておく。
@@ -102,7 +100,6 @@
     // 顔カスケードファイルの読み込み
     NSString* resDir = [[NSBundle mainBundle] resourcePath];
     const char *cascadeNameFace = "haarcascade_frontalface_alt.xml";
-    NSLog(@"%s", cascadeNameFace);
     char cascade_path[PATH_MAX];
     sprintf(cascade_path, "%s/%s", [resDir cStringUsingEncoding:NSASCIIStringEncoding], cascadeNameFace );
     cv::CascadeClassifier cascade;
@@ -122,7 +119,6 @@
     // 目カスケードファイルの読み込み
     NSString* resDirEye = [[NSBundle mainBundle] resourcePath];
     const char *cascadeNameEye = "haarcascade_eye.xml";
-    NSLog(@"%s", cascadeNameEye);
     
     char cascadePathEye[PATH_MAX];
     sprintf(cascadePathEye, "%s/%s", [resDirEye cStringUsingEncoding:NSASCIIStringEncoding], cascadeNameEye );
@@ -138,7 +134,6 @@
     // 鼻　カスケードファイルの読み込み
     NSString* resDirNose = [[NSBundle mainBundle] resourcePath];
     const char *cascadeNameNose = "haarcascade_mcs_nose.xml";
-    NSLog(@"%s", cascadeNameNose);
     
     char cascadePathNose[PATH_MAX];
     sprintf(cascadePathNose, "%s/%s", [resDirNose cStringUsingEncoding:NSASCIIStringEncoding], cascadeNameNose );
@@ -359,16 +354,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 // 撮影ボタンが押された時
 - (void)takePhotBack:(id)sender {

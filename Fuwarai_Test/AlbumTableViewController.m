@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AlbumTableViewCell.h"
+#import "PhotSelectViewController.h"
 
 @interface AlbumTableViewController ()
 <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -81,7 +82,7 @@
                             
                             // ALAssetからサムネール画像を取得してUIImageに変換
                             UIImage *image = [UIImage imageWithCGImage:[[_AlAssetsArr objectAtIndex:i] thumbnail]];
-                            NSData* imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(image, 0)];
+                            NSData* imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(image, 1)];
                             [imageList addObject:imageData];
                             
                             // exifデータの取得
@@ -108,9 +109,6 @@
             [defaultsAlbumPhotoDate setObject:imageDateList forKey:@"defaultsAlbumPhotoDate"];
             [defaultsAlbumPhotoDate synchronize];
             
-            NSLog(@"imageSaveDate%@", imageDateList);
-            NSLog(@"imageSaveDate%@", [imageDateList class]);
-            
         }
     } failureBlock:nil];
 
@@ -136,7 +134,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-NSLog(@"photoImages count%lu", (unsigned long)[_photoImages count]);
     return [_photoImages count];
 }
 
@@ -144,7 +141,6 @@ NSLog(@"photoImages count%lu", (unsigned long)[_photoImages count]);
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AlbumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSInteger row = indexPath.row;
     
     [cell setData:indexPath];
     
@@ -152,6 +148,18 @@ NSLog(@"photoImages count%lu", (unsigned long)[_photoImages count]);
     
     return cell;
     // reload tableview
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger row = indexPath.row;
+    
+    // 画面遷移をプログラムで実装
+    PhotSelectViewController *photSelectView = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotSelectViewController"];
+    photSelectView.selectedRow = row;
+    // PhotSelectViewControllerの起動
+    [self presentViewController:photSelectView animated:YES completion:nil];
+    
 }
 
 

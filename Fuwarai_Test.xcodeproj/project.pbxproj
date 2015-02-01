@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8915417B1A7A6C7700501DC1 /* AlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8915417A1A7A6C7700501DC1 /* AlbumTableViewController.m */; };
 		8915417E1A7A716600501DC1 /* AlbumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8915417D1A7A716600501DC1 /* AlbumTableViewCell.m */; };
+		8937042E1A7DFA1900E71864 /* PhotSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8937042D1A7DFA1900E71864 /* PhotSelectViewController.m */; };
 		894F3D831A5FC29600552369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 894F3D821A5FC29600552369 /* main.m */; };
 		894F3D861A5FC29600552369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 894F3D851A5FC29600552369 /* AppDelegate.m */; };
 		894F3D891A5FC29600552369 /* Fuwarai_Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 894F3D871A5FC29600552369 /* Fuwarai_Test.xcdatamodeld */; };
@@ -46,6 +47,8 @@
 		8915417A1A7A6C7700501DC1 /* AlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumTableViewController.m; sourceTree = "<group>"; };
 		8915417C1A7A716600501DC1 /* AlbumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumTableViewCell.h; sourceTree = "<group>"; };
 		8915417D1A7A716600501DC1 /* AlbumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumTableViewCell.m; sourceTree = "<group>"; };
+		8937042C1A7DFA1900E71864 /* PhotSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotSelectViewController.h; sourceTree = "<group>"; };
+		8937042D1A7DFA1900E71864 /* PhotSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotSelectViewController.m; sourceTree = "<group>"; };
 		894F3D7D1A5FC29600552369 /* Fuwarai_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fuwarai_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		894F3D811A5FC29600552369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		894F3D821A5FC29600552369 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 		8915417F1A7A717700501DC1 /* AlbumTabeleViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8937042C1A7DFA1900E71864 /* PhotSelectViewController.h */,
+				8937042D1A7DFA1900E71864 /* PhotSelectViewController.m */,
 				8915417C1A7A716600501DC1 /* AlbumTableViewCell.h */,
 				8915417D1A7A716600501DC1 /* AlbumTableViewCell.m */,
 				891541791A7A6C7700501DC1 /* AlbumTableViewController.h */,
@@ -304,6 +309,7 @@
 				894F3D8C1A5FC29600552369 /* ViewController.m in Sources */,
 				8915417B1A7A6C7700501DC1 /* AlbumTableViewController.m in Sources */,
 				894F3D891A5FC29600552369 /* Fuwarai_Test.xcdatamodeld in Sources */,
+				8937042E1A7DFA1900E71864 /* PhotSelectViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
