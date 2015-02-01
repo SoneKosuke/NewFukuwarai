@@ -31,16 +31,18 @@
     // アルバム写真データの読み出し
     NSUserDefaults *defaultsAlbumPhoto = [NSUserDefaults standardUserDefaults];
     photoImages = [defaultsAlbumPhoto objectForKey:@"defaultsAlbumPhoto"];
+    UIImage *image = [[UIImage alloc] initWithData:photoImages[indexPath.row]];
+    self.photImage.image = image;
     
-    // アルバム写真データの読み出し
+    // 写真の保存時間を読み出し
     NSUserDefaults *defaultsAlbumPhotoDate = [NSUserDefaults standardUserDefaults];
     photoImagesDate = [defaultsAlbumPhotoDate objectForKey:@"defaultsAlbumPhotoDate"];
     
-    UIImage *image = [[UIImage alloc] initWithData:photoImages[indexPath.row]];
-    NSString *label = [[[photoImagesDate[indexPath.row] description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    // 余分なデータを削除
+    NSString *mstr = [[[photoImagesDate[indexPath.row] description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]] stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    
-    self.photImage.image = image;
+    NSMutableString *label = [NSMutableString stringWithString:mstr];
+    [label deleteCharactersInRange:NSMakeRange(10, 13)];
 
     self.dateLabel.text = label;
     

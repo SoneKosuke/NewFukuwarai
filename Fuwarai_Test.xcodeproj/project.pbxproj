@@ -28,7 +28,6 @@
 		89B3157B1A77326C00014D05 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89514D6E1A75D30A009E0DAD /* AssetsLibrary.framework */; };
 		89B3157D1A77E20100014D05 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B3157C1A77E20100014D05 /* CoreGraphics.framework */; };
 		89B3157F1A77E21000014D05 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B3157E1A77E21000014D05 /* QuartzCore.framework */; };
-		89B315821A77E59400014D05 /* ThumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B315811A77E59400014D05 /* ThumViewController.m */; };
 		89B315841A77E79600014D05 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B315831A77E79600014D05 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,8 +72,6 @@
 		899AF4B31A7C8F5C007518C5 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		89B3157C1A77E20100014D05 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		89B3157E1A77E21000014D05 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		89B315801A77E59400014D05 /* ThumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumViewController.h; sourceTree = "<group>"; };
-		89B315811A77E59400014D05 /* ThumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumViewController.m; sourceTree = "<group>"; };
 		89B315831A77E79600014D05 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -150,8 +147,6 @@
 				89514D5E1A735A5C009E0DAD /* AfterTakePhotViewController.mm */,
 				894F3D8A1A5FC29600552369 /* ViewController.h */,
 				894F3D8B1A5FC29600552369 /* ViewController.m */,
-				89B315801A77E59400014D05 /* ThumViewController.h */,
-				89B315811A77E59400014D05 /* ThumViewController.m */,
 				894F3D8D1A5FC29600552369 /* Main.storyboard */,
 				894F3D901A5FC29600552369 /* Images.xcassets */,
 				894F3D921A5FC29600552369 /* LaunchScreen.xib */,
@@ -303,7 +298,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				894F3D861A5FC29600552369 /* AppDelegate.m in Sources */,
-				89B315821A77E59400014D05 /* ThumViewController.m in Sources */,
 				89514D5F1A735A5C009E0DAD /* AfterTakePhotViewController.mm in Sources */,
 				8915417E1A7A716600501DC1 /* AlbumTableViewCell.m in Sources */,
 				894F3D831A5FC29600552369 /* main.m in Sources */,
