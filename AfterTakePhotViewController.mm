@@ -378,12 +378,9 @@
         case 0:
         {
             NSLog(@"保存を選択");
-            
-            // キャプチャ対象をWindowにします。
-            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-            
+                        
             // キャプチャ画像を描画する対象を生成します。
-            UIGraphicsBeginImageContextWithOptions(window.bounds.size, NO, 0.0f);
+            UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO, 0);
             CGContextRef context = UIGraphicsGetCurrentContext();
             
             // Windowの現在の表示内容を１つずつ描画して行きます。
@@ -424,13 +421,9 @@
                 }
             } failureBlock:nil];
             
-            // 値とキー値を指定した生成例
-            NSDictionary *metadata = [NSDictionary dictionaryWithObject:@"hoge" forKey:@"Key"];
-            
             // カメラロールにUIImageを保存する。保存完了後、completionBlockで「NSURL* assetURL」が取得できる
-//            [_library writeImageToSavedPhotosAlbum:capturedImage.CGImage orientation:(ALAssetOrientation)capturedImage.imageOrientation completionBlock:^(NSURL* assetURL, NSError* error) {
+            [_library writeImageToSavedPhotosAlbum:capturedImage.CGImage orientation:(ALAssetOrientation)capturedImage.imageOrientation completionBlock:^(NSURL* assetURL, NSError* error) {
 
-            [_library writeImageToSavedPhotosAlbum:capturedImage.CGImage metadata:metadata completionBlock:^(NSURL* assetURL, NSError* error) {
                 // アルバムにALAssetを追加するメソッド
                 [self addAssetURL:assetURL AlbumURL:_groupURL];
                 }
@@ -467,13 +460,6 @@
         } failureBlock: nil];
     } failureBlock:nil];
 }
-
-- (void) assetsLibraryDidChange:(id)sender
-{
-    NSLog(@"hogehoge" );
-    
-}
-
 
 - (IBAction)rightEyemove:(UIPanGestureRecognizer *)sender {
     CGPoint rightEyemove = [sender translationInView:self.righteye];

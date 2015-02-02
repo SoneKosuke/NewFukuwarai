@@ -80,28 +80,30 @@
                         <viewControllerLayoutGuide type="top" id="X0B-su-gh7"/>
                         <viewControllerLayoutGuide type="bottom" id="clI-xr-RwE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="027-gc-6Au">
+                    <view key="view" contentMode="scaleAspectFit" id="027-gc-6Au">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nCu-EW-Jqj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nCu-EW-Jqj">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="QMl-pT-hNo">
-                                        <variation key="widthClass=compact" constant="410"/>
+                                    <constraint firstAttribute="height" constant="300" id="V9L-kq-WQD">
+                                        <variation key="widthClass=compact" constant="401"/>
                                     </constraint>
-                                    <constraint firstAttribute="width" constant="309" id="RQ7-gf-pMU"/>
+                                    <constraint firstAttribute="width" constant="240" id="egd-uK-aQd">
+                                        <variation key="widthClass=compact" constant="357"/>
+                                    </constraint>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="QMl-pT-hNo"/>
-                                        <exclude reference="RQ7-gf-pMU"/>
+                                        <exclude reference="V9L-kq-WQD"/>
+                                        <exclude reference="egd-uK-aQd"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="QMl-pT-hNo"/>
-                                        <include reference="RQ7-gf-pMU"/>
+                                        <include reference="V9L-kq-WQD"/>
+                                        <include reference="egd-uK-aQd"/>
                                     </mask>
                                 </variation>
                             </imageView>
@@ -221,7 +223,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="nCu-EW-Jqj" secondAttribute="centerY" constant="80" id="HXB-WS-ahP">
-                                <variation key="widthClass=compact" constant="16"/>
+                                <variation key="widthClass=compact" constant="35.5"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="TRR-Jb-Nnp" secondAttribute="centerY" constant="-25" id="Xke-iJ-Vvp">
                                 <variation key="widthClass=compact" constant="-63"/>
@@ -230,22 +232,22 @@
                                 <variation key="widthClass=compact" constant="25"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="Wk0-bp-eu3" secondAttribute="centerX" constant="78.5" id="aI6-4g-GEV">
-                                <variation key="widthClass=compact" constant="64"/>
+                                <variation key="widthClass=compact" constant="81"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="Czy-3Q-vAY" secondAttribute="centerX" constant="-7" id="bGP-hM-p0Z">
-                                <variation key="widthClass=compact" constant="0.0"/>
+                                <variation key="widthClass=compact" constant="-5"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="vg6-uR-Al7" secondAttribute="centerX" constant="-85.5" id="cCm-Ho-dUg">
-                                <variation key="widthClass=compact" constant="-70"/>
+                                <variation key="widthClass=compact" constant="-86"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="vg6-uR-Al7" secondAttribute="centerY" constant="117" id="f1l-Iz-Zx9">
-                                <variation key="widthClass=compact" constant="102"/>
+                                <variation key="widthClass=compact" constant="110"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="Wk0-bp-eu3" secondAttribute="centerY" constant="117" id="ujv-c7-eZT">
-                                <variation key="widthClass=compact" constant="102"/>
+                                <variation key="widthClass=compact" constant="110"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="TRR-Jb-Nnp" secondAttribute="centerX" constant="13" id="yO8-9O-CAC">
-                                <variation key="widthClass=compact" constant="0.0"/>
+                                <variation key="widthClass=compact" constant="-5"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="nCu-EW-Jqj" secondAttribute="centerX" constant="-0.5" id="ybo-t9-h8Z"/>
                         </constraints>
@@ -353,6 +355,7 @@
                         <viewControllerLayoutGuide type="bottom" id="8Sa-kD-gXk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3Ia-8M-XHx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qe5-cJ-KDa">
@@ -385,7 +388,8 @@
                                                             <exclude reference="cx3-cA-ATQ"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="30" y="8" width="104" height="93.5"/>
                                                         <mask key="constraints">
                                                             <include reference="SpK-oD-pBu"/>
                                                             <include reference="cx3-cA-ATQ"/>
@@ -422,7 +426,7 @@
                                                     <variation key="widthClass=compact" constant="78"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="ZZI-ew-2IO" secondAttribute="centerX" constant="-118.5" id="gXk-2v-pSF">
-                                                    <variation key="widthClass=compact" constant="-73.5"/>
+                                                    <variation key="widthClass=compact" constant="-76.5"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="ZZI-ew-2IO" secondAttribute="centerY" constant="-0.25" id="hyJ-58-B6O"/>
                                                 <constraint firstAttribute="centerY" secondItem="6Lf-G7-kYl" secondAttribute="centerY" constant="4" id="kCL-VC-dDa"/>
@@ -433,10 +437,10 @@
                                                     <exclude reference="ZZI-ew-2IO"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="6Qy-is-tiI"/>
-                                                    <exclude reference="kCL-VC-dDa"/>
                                                     <exclude reference="gXk-2v-pSF"/>
                                                     <exclude reference="hyJ-58-B6O"/>
+                                                    <exclude reference="6Qy-is-tiI"/>
+                                                    <exclude reference="kCL-VC-dDa"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -445,10 +449,10 @@
                                                     <include reference="ZZI-ew-2IO"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="6Qy-is-tiI"/>
-                                                    <include reference="kCL-VC-dDa"/>
                                                     <include reference="gXk-2v-pSF"/>
                                                     <include reference="hyJ-58-B6O"/>
+                                                    <include reference="6Qy-is-tiI"/>
+                                                    <include reference="kCL-VC-dDa"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

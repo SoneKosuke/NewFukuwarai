@@ -232,9 +232,9 @@
          // 入力された画像データからJPEGフォーマットとしてデータを取得
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
          
-         UIImage *cameraRoll = [[UIImage alloc]initWithData:imageData];
          // 取得画像をカメラロールに保存
-         UIImageWriteToSavedPhotosAlbum(cameraRoll, nil, nil, nil);
+//         UIImage *cameraRoll = [[UIImage alloc]initWithData:imageData];
+//         UIImageWriteToSavedPhotosAlbum(cameraRoll, nil, nil, nil);
          
          // 保存するディレクトリを指定します
          // ここではデータを保存する為に一般的に使われるDocumentsディレクトリ

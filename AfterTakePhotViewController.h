@@ -11,7 +11,6 @@
 @interface AfterTakePhotViewController : ViewController<UIActionSheetDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
 @property (weak, nonatomic) IBOutlet UIImageView *righteye;
 @property (weak, nonatomic) IBOutlet UIImageView *lefteye;
 @property (weak, nonatomic) IBOutlet UIImageView *nose;
