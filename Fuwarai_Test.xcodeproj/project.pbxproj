@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8915417B1A7A6C7700501DC1 /* AlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8915417A1A7A6C7700501DC1 /* AlbumTableViewController.m */; };
 		8915417E1A7A716600501DC1 /* AlbumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8915417D1A7A716600501DC1 /* AlbumTableViewCell.m */; };
 		8937042E1A7DFA1900E71864 /* PhotSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8937042D1A7DFA1900E71864 /* PhotSelectViewController.m */; };
 		894F3D831A5FC29600552369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 894F3D821A5FC29600552369 /* main.m */; };
@@ -25,6 +24,8 @@
 		89514D671A74DB99009E0DAD /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89514D631A74DB99009E0DAD /* haarcascade_frontalface_alt.xml */; };
 		89514D681A74DB99009E0DAD /* haarcascade_mcs_nose.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89514D641A74DB99009E0DAD /* haarcascade_mcs_nose.xml */; };
 		89514D691A74DB99009E0DAD /* haarcascade_mcs_mouth.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89514D651A74DB99009E0DAD /* haarcascade_mcs_mouth.xml */; };
+		898F7B511A7F07E300E91255 /* sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 898F7B501A7F07E300E91255 /* sample.jpg */; };
+		898F7B541A7F100C00E91255 /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F7B531A7F100B00E91255 /* AlbumViewController.m */; };
 		899AF4B41A7C8F5C007518C5 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899AF4B31A7C8F5C007518C5 /* ImageIO.framework */; };
 		89B3157B1A77326C00014D05 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89514D6E1A75D30A009E0DAD /* AssetsLibrary.framework */; };
 		89B3157D1A77E20100014D05 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B3157C1A77E20100014D05 /* CoreGraphics.framework */; };
@@ -43,8 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		891541791A7A6C7700501DC1 /* AlbumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumTableViewController.h; sourceTree = "<group>"; };
-		8915417A1A7A6C7700501DC1 /* AlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumTableViewController.m; sourceTree = "<group>"; };
 		8915417C1A7A716600501DC1 /* AlbumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumTableViewCell.h; sourceTree = "<group>"; };
 		8915417D1A7A716600501DC1 /* AlbumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumTableViewCell.m; sourceTree = "<group>"; };
 		8937042C1A7DFA1900E71864 /* PhotSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotSelectViewController.h; sourceTree = "<group>"; };
@@ -72,6 +71,9 @@
 		89514D641A74DB99009E0DAD /* haarcascade_mcs_nose.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_mcs_nose.xml; path = "../../../../../../Downloads/ios-face-detection-d35a62f475aa/OpenCV-2.2.0/haarcascades/haarcascade_mcs_nose.xml"; sourceTree = "<group>"; };
 		89514D651A74DB99009E0DAD /* haarcascade_mcs_mouth.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_mcs_mouth.xml; path = "../../../../../../Downloads/ios-face-detection-d35a62f475aa 3/OpenCV-2.2.0/haarcascades/haarcascade_mcs_mouth.xml"; sourceTree = "<group>"; };
 		89514D6E1A75D30A009E0DAD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		898F7B501A7F07E300E91255 /* sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sample.jpg; path = ../../../../../../Downloads/sample.jpg; sourceTree = "<group>"; };
+		898F7B521A7F100B00E91255 /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewController.h; sourceTree = "<group>"; };
+		898F7B531A7F100B00E91255 /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
 		899AF4B31A7C8F5C007518C5 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		89B3157C1A77E20100014D05 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		89B3157E1A77E21000014D05 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -110,8 +112,8 @@
 				8937042D1A7DFA1900E71864 /* PhotSelectViewController.m */,
 				8915417C1A7A716600501DC1 /* AlbumTableViewCell.h */,
 				8915417D1A7A716600501DC1 /* AlbumTableViewCell.m */,
-				891541791A7A6C7700501DC1 /* AlbumTableViewController.h */,
-				8915417A1A7A6C7700501DC1 /* AlbumTableViewController.m */,
+				898F7B521A7F100B00E91255 /* AlbumViewController.h */,
+				898F7B531A7F100B00E91255 /* AlbumViewController.m */,
 			);
 			name = AlbumTabeleViewController;
 			sourceTree = "<group>";
@@ -164,6 +166,7 @@
 		894F3D801A5FC29600552369 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				898F7B501A7F07E300E91255 /* sample.jpg */,
 				894F3D811A5FC29600552369 /* Info.plist */,
 				894F3D821A5FC29600552369 /* main.m */,
 			);
@@ -281,6 +284,7 @@
 				89514D691A74DB99009E0DAD /* haarcascade_mcs_mouth.xml in Resources */,
 				89514D671A74DB99009E0DAD /* haarcascade_frontalface_alt.xml in Resources */,
 				89514D661A74DB99009E0DAD /* haarcascade_eye.xml in Resources */,
+				898F7B511A7F07E300E91255 /* sample.jpg in Resources */,
 				894F3D8F1A5FC29600552369 /* Main.storyboard in Resources */,
 				894F3D941A5FC29600552369 /* LaunchScreen.xib in Resources */,
 				894F3D911A5FC29600552369 /* Images.xcassets in Resources */,
@@ -304,10 +308,10 @@
 			files = (
 				894F3D861A5FC29600552369 /* AppDelegate.m in Sources */,
 				89514D5F1A735A5C009E0DAD /* AfterTakePhotViewController.mm in Sources */,
+				898F7B541A7F100C00E91255 /* AlbumViewController.m in Sources */,
 				8915417E1A7A716600501DC1 /* AlbumTableViewCell.m in Sources */,
 				894F3D831A5FC29600552369 /* main.m in Sources */,
 				894F3D8C1A5FC29600552369 /* ViewController.m in Sources */,
-				8915417B1A7A6C7700501DC1 /* AlbumTableViewController.m in Sources */,
 				894F3D891A5FC29600552369 /* Fuwarai_Test.xcdatamodeld in Sources */,
 				8937042E1A7DFA1900E71864 /* PhotSelectViewController.m in Sources */,
 			);

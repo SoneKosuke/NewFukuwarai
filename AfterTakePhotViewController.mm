@@ -274,7 +274,9 @@
     
     // 変換結果を画面に表示
     _origImage = MatToUIImage(baseMat);
+//    UIImage *baseimage = [UIImage imageNamed:@"sample.jpg"];
     self.imageView.image = _origImage;
+    
 }
 
 // イメージをリサイズする

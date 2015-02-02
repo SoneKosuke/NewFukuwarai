@@ -1,35 +1,38 @@
 //
-//  AlbumTableViewController.m
+//  AlbumViewController.m
 //  Fuwarai_Test
 //
-//  Created by sonekousuke on 2015/01/29.
+//  Created by sonekousuke on 2015/02/02.
 //  Copyright (c) 2015年 KosukeSone. All rights reserved.
 //
 
-#import "AlbumTableViewController.h"
+#import "AlbumViewController.h"
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AlbumTableViewCell.h"
 #import "PhotSelectViewController.h"
 
-@interface AlbumTableViewController ()
-<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-{
+@interface AlbumViewController ()<UITableViewDelegate, UITableViewDataSource> {
     ALAssetsLibrary *_library;
     NSString *_AlbumName;
     NSMutableArray *_AlAssetsArr;
-
 }
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) NSMutableArray *photoImages;
 @property  int countPhot;
 @property (nonatomic, weak) NSArray *imageList;
 
+////
+@property (nonatomic, strong) NSArray *dataSourceiPhone;
+@property (nonatomic, strong) NSArray *dataSourceAndroid;
+///
+
 @end
 
-@implementation AlbumTableViewController
+@implementation AlbumViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
     int status = 0;
     //ユーザデフォルトに書き込む
@@ -54,6 +57,8 @@
     toolbar.items = items;
     
     [self.view addSubview:toolbar];
+    
+
     
     // アルバムの写真をカメラロールから取得
     _library = [[ALAssetsLibrary alloc] init];
@@ -111,21 +116,37 @@
             
         }
     } failureBlock:nil];
-
+    
     // アルバム写真データの読み出し
-
     NSUserDefaults *defaultsAlbumPhoto = [NSUserDefaults standardUserDefaults];
     _photoImages = [defaultsAlbumPhoto objectForKey:@"defaultsAlbumPhoto"];
-
+    
+    
+    // デリゲートメソッドをこのクラスで実装する
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+////
+    // テーブルに表示したいデータソースをセット
+    self.dataSourceiPhone = @[@"iPhone 4", @"iPhone 4S", @"iPhone 5", @"iPhone 5c", @"iPhone 5s"];
+    self.dataSourceAndroid = @[@"Nexus", @"Galaxy", @"Xperia"];
+////
+    
+    
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+
+- (void)takePhotBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -133,21 +154,19 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
+    NSLog(@"%d", [_photoImages count]);
     return [_photoImages count];
+    
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AlbumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
     
     [cell setData:indexPath];
     
-
-    
     return cell;
-    // reload tableview
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -161,45 +180,6 @@
     [self presentViewController:photSelectView animated:YES completion:nil];
     
 }
-
-
-- (void)takePhotBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

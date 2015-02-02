@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "AfterTakePhotViewController.h"
 #import <AVFoundation/AVFoundation.h>
-#import "AlbumTableViewController.h"
+#import "AlbumViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/ImageIO.h>
 
@@ -204,10 +204,10 @@
     [self.session stopRunning];
     
     // AlbumTableViewControllerのインスタンス化
-    AlbumTableViewController *AlbumTableViewController =  [self.storyboard instantiateViewControllerWithIdentifier:@"AlbumTableViewController"];
+    AlbumViewController *AlbumViewController =  [self.storyboard instantiateViewControllerWithIdentifier:@"AlbumViewController"];
     
     // AlbumTableViewControllerの起動
-    [self presentViewController:AlbumTableViewController animated:YES completion:nil];
+    [self presentViewController:AlbumViewController animated:YES completion:nil];
     
 }
 
