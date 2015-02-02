@@ -377,8 +377,6 @@
     switch (buttonIndex) {
         case 0:
         {
-            NSLog(@"保存を選択");
-                        
             // キャプチャ画像を描画する対象を生成します。
             UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO, 0);
             CGContextRef context = UIGraphicsGetCurrentContext();

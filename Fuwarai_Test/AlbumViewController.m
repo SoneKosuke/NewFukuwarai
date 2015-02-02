@@ -23,11 +23,6 @@
 @property  int countPhot;
 @property (nonatomic, weak) NSArray *imageList;
 
-////
-@property (nonatomic, strong) NSArray *dataSourceiPhone;
-@property (nonatomic, strong) NSArray *dataSourceAndroid;
-///
-
 @end
 
 @implementation AlbumViewController
@@ -58,15 +53,12 @@
     
     [self.view addSubview:toolbar];
     
-
-    
     // アルバムの写真をカメラロールから取得
     _library = [[ALAssetsLibrary alloc] init];
     _AlbumName = @"123";
     _AlAssetsArr = [NSMutableArray array];
     NSMutableArray *imageList = [NSMutableArray new];
     NSMutableArray *imageDateList = [NSMutableArray new];
-    
     
     // AlAssetsLibraryからALAssetGroupを検索
     [_library enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
@@ -86,8 +78,8 @@
                         for (int i=0; i<[_AlAssetsArr count]; i++) {
                             
                             // ALAssetからサムネール画像を取得してUIImageに変換
-                            UIImage *image = [UIImage imageWithCGImage:[[_AlAssetsArr objectAtIndex:i] thumbnail]];
-                            NSData* imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(image, 1)];
+                            UIImage *image = [UIImage imageWithCGImage:[[[_AlAssetsArr objectAtIndex:i] defaultRepresentation] fullResolutionImage]];
+                            NSData* imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(image, 0.1f)];
                             [imageList addObject:imageData];
                             
                             // exifデータの取得
@@ -121,17 +113,9 @@
     NSUserDefaults *defaultsAlbumPhoto = [NSUserDefaults standardUserDefaults];
     _photoImages = [defaultsAlbumPhoto objectForKey:@"defaultsAlbumPhoto"];
     
-    
     // デリゲートメソッドをこのクラスで実装する
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-////
-    // テーブルに表示したいデータソースをセット
-    self.dataSourceiPhone = @[@"iPhone 4", @"iPhone 4S", @"iPhone 5", @"iPhone 5c", @"iPhone 5s"];
-    self.dataSourceAndroid = @[@"Nexus", @"Galaxy", @"Xperia"];
-////
-    
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -141,7 +125,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (void)takePhotBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

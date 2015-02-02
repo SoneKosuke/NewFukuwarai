@@ -87,23 +87,19 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nCu-EW-Jqj">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="V9L-kq-WQD">
-                                        <variation key="widthClass=compact" constant="401"/>
-                                    </constraint>
-                                    <constraint firstAttribute="width" constant="240" id="egd-uK-aQd">
-                                        <variation key="widthClass=compact" constant="357"/>
-                                    </constraint>
+                                    <constraint firstAttribute="width" constant="312" id="7yA-0s-RVZ"/>
+                                    <constraint firstAttribute="height" constant="390" id="Juq-A0-EaI"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="V9L-kq-WQD"/>
-                                        <exclude reference="egd-uK-aQd"/>
+                                        <exclude reference="7yA-0s-RVZ"/>
+                                        <exclude reference="Juq-A0-EaI"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="V9L-kq-WQD"/>
-                                        <include reference="egd-uK-aQd"/>
+                                        <include reference="7yA-0s-RVZ"/>
+                                        <include reference="Juq-A0-EaI"/>
                                     </mask>
                                 </variation>
                             </imageView>
@@ -223,28 +219,28 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="nCu-EW-Jqj" secondAttribute="centerY" constant="80" id="HXB-WS-ahP">
-                                <variation key="widthClass=compact" constant="35.5"/>
+                                <variation key="widthClass=compact" constant="15.5"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="TRR-Jb-Nnp" secondAttribute="centerY" constant="-25" id="Xke-iJ-Vvp">
-                                <variation key="widthClass=compact" constant="-63"/>
+                                <variation key="widthClass=compact" constant="-62"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="Czy-3Q-vAY" secondAttribute="centerY" constant="48" id="ZIp-ME-hTY">
-                                <variation key="widthClass=compact" constant="25"/>
+                                <variation key="widthClass=compact" constant="21"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="Wk0-bp-eu3" secondAttribute="centerX" constant="78.5" id="aI6-4g-GEV">
-                                <variation key="widthClass=compact" constant="81"/>
+                                <variation key="widthClass=compact" constant="76"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="Czy-3Q-vAY" secondAttribute="centerX" constant="-7" id="bGP-hM-p0Z">
                                 <variation key="widthClass=compact" constant="-5"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="vg6-uR-Al7" secondAttribute="centerX" constant="-85.5" id="cCm-Ho-dUg">
-                                <variation key="widthClass=compact" constant="-86"/>
+                                <variation key="widthClass=compact" constant="-82"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="vg6-uR-Al7" secondAttribute="centerY" constant="117" id="f1l-Iz-Zx9">
-                                <variation key="widthClass=compact" constant="110"/>
+                                <variation key="widthClass=compact" constant="105"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="Wk0-bp-eu3" secondAttribute="centerY" constant="117" id="ujv-c7-eZT">
-                                <variation key="widthClass=compact" constant="110"/>
+                                <variation key="widthClass=compact" constant="105"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="TRR-Jb-Nnp" secondAttribute="centerX" constant="13" id="yO8-9O-CAC">
                                 <variation key="widthClass=compact" constant="-5"/>
@@ -344,7 +340,7 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="823.5" y="127"/>
+            <point key="canvasLocation" x="824.25" y="127.5"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="O3g-aH-uS2">
@@ -522,22 +518,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pM1-PL-rOY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pM1-PL-rOY">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="244" id="Qgv-Q7-mVw"/>
-                                    <constraint firstAttribute="height" constant="357" id="hhb-jV-rkm"/>
+                                    <constraint firstAttribute="width" constant="312" id="ceH-T3-53M"/>
+                                    <constraint firstAttribute="height" constant="390" id="u1H-Ja-T1u"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="Qgv-Q7-mVw"/>
-                                        <exclude reference="hhb-jV-rkm"/>
+                                        <exclude reference="ceH-T3-53M"/>
+                                        <exclude reference="u1H-Ja-T1u"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="Qgv-Q7-mVw"/>
-                                        <include reference="hhb-jV-rkm"/>
+                                        <include reference="ceH-T3-53M"/>
+                                        <include reference="u1H-Ja-T1u"/>
                                     </mask>
                                 </variation>
                             </imageView>
@@ -546,7 +542,7 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="pM1-PL-rOY" secondAttribute="centerX" id="5bN-78-pI5"/>
                             <constraint firstAttribute="centerY" secondItem="pM1-PL-rOY" secondAttribute="centerY" constant="0.5" id="AFQ-eT-eOY">
-                                <variation key="widthClass=compact" constant="70.5"/>
+                                <variation key="widthClass=compact" constant="0.5"/>
                             </constraint>
                         </constraints>
                         <variation key="default">

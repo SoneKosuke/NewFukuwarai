@@ -190,12 +190,11 @@
     }
 }
 
-// アルバムへ
+// アルバムボタン実行時
 - (void)album:(id)sender {
-    NSLog(@"album選択");
     
-    int status = 1;
     //ユーザデフォルトに書き込む
+    int status = 1;
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:status forKey:@"status"];
     [defaults synchronize];
@@ -211,7 +210,7 @@
     
 }
 
-// シャッター
+// シャッターボタン実行時
 - (void)takePhoto:(id)sender
 {
     // ビデオ入力のAVCaptureConnectionを取得
@@ -232,17 +231,11 @@
          // 入力された画像データからJPEGフォーマットとしてデータを取得
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
          
-         // 取得画像をカメラロールに保存
-//         UIImage *cameraRoll = [[UIImage alloc]initWithData:imageData];
-//         UIImageWriteToSavedPhotosAlbum(cameraRoll, nil, nil, nil);
-         
          // 保存するディレクトリを指定します
-         // ここではデータを保存する為に一般的に使われるDocumentsディレクトリ
          NSString *path = [NSString stringWithFormat:@"%@/sample.jpg",
                            [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]];
          
          // NSDataのwriteToFileメソッドを使ってファイルに書き込みます
-         // atomically=YESの場合、同名のファイルがあったら、まずは別名で作成して、その後、ファイルの上書きを行います
          if ([imageData writeToFile:path atomically:YES]) {
              NSLog(@"save OK");
              NSLog(@"%@", path);
@@ -255,8 +248,8 @@
              NSLog(@"save NG");
          }
          
-         int status = 1;
          //ユーザデフォルトに書き込む
+         int status = 1;
          NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
          [defaults setInteger:status forKey:@"status"];
          [defaults synchronize];
@@ -283,7 +276,7 @@
         [self presentViewController:picker animated:YES completion:NULL];
     }
 }
-
+// 写真選択時実行
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -298,7 +291,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
                       [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]];
     
     // NSDataのwriteToFileメソッドを使ってファイルに書き込みます
-    // atomically=YESの場合、同名のファイルがあったら、まずは別名で作成して、その後、ファイルの上書きを行います
     if ([imageData writeToFile:path atomically:YES]) {
         NSLog(@"save OK");
         NSLog(@"%@", path);
@@ -327,7 +319,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [self presentViewController:AfterTakePhotVC animated:YES completion:nil];
     
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
