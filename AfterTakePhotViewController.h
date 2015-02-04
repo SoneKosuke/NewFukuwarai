@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *lefteye;
 @property (weak, nonatomic) IBOutlet UIImageView *nose;
 @property (weak, nonatomic) IBOutlet UIImageView *mouth;
+@property NSInteger selectedRow;
 - (IBAction)rightEyemove:(UIPanGestureRecognizer *)sender;
 - (IBAction)leftEyeMove:(UIPanGestureRecognizer *)sender;
 - (IBAction)noseMove:(UIPanGestureRecognizer *)sender;
@@ -23,5 +24,10 @@
 - (IBAction)mouthPinch:(UIPinchGestureRecognizer *)sender;
 - (IBAction)leftEyePinch:(UIPinchGestureRecognizer *)sender;
 - (IBAction)rightEyePinch:(UIPinchGestureRecognizer *)sender;
+- (IBAction)rightRotation:(UIRotationGestureRecognizer *)sender;
+- (IBAction)leftRotation:(UIRotationGestureRecognizer *)sender;
+- (IBAction)noseRotation:(UIRotationGestureRecognizer *)sender;
+- (IBAction)mouthRotation:(UIRotationGestureRecognizer *)sender;
+- (IBAction)rightEyeTap:(UITapGestureRecognizer *)sender;
 
 @end

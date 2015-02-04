@@ -23,24 +23,18 @@
 @property (strong, nonatomic) AVCaptureStillImageOutput *stillImageOutput;
 @property (strong, nonatomic) AVCaptureSession *session;
 @property (strong, nonatomic) UIView *previewView;
-@property NSInteger status;
-
 
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    //ユーザーデフォルトから文字を読み出す。
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int status = [defaults integerForKey:@"status"];
-    NSLog(@"%d", status);
     
     if (status == 0) {
-    
         // 撮影ボタンを配置したツールバーを生成（下）
         UIToolbar *toolbarunder = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50)];
         toolbarunder.translucent = YES;
@@ -92,7 +86,7 @@
         
         [self.view addSubview:self.previewView];
     }
-    
+        [super viewDidLoad];
  }
 
 - (void)tearDownAVCapture

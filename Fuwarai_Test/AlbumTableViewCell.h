@@ -12,7 +12,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *photImage;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
-//- (void)setData:(UIImage *)image;
 - (void)setData:(NSIndexPath *)indexPath;
 
 

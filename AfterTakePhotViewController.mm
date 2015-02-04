@@ -7,6 +7,7 @@
 //
 
 #import "AfterTakePhotViewController.h"
+#import "BaseImageSelectViewController.h"
 #import <opencv2/opencv.hpp>
 #import <opencv2/imgcodecs/ios.h>
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -37,14 +38,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    // self.originImage.image = image;
     
     int status = 0;
     //ユーザデフォルトに書き込む
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:status forKey:@"status"];
     [defaults synchronize];
+    int eyesCount = 0;
     
     // 撮影ボタンを配置したツールバーを生成
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50)];
@@ -58,14 +58,28 @@
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc]
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                target:nil action:nil];
-    // 顔をバラバラにする。
+    // シェア保存ボタンを生成
     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                                              target:self
                                                                              action:@selector(share:)];
-    // toolbarにbuttonを配置
-    NSArray *items = [NSArray arrayWithObjects:spacer, takePhotBack, spacer, share, nil];
-    toolbar.items = items;
+    // ベース画像選択ボタンを生成
+    UIBarButtonItem *baseImageSelect = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
+                                                                           target:self
+                                                                           action:@selector(baseImageSelect:)];
     
+    // ベース画像選択後のベース画像選択ボタン
+    UIBarButtonItem *baseImageSelectAgain = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
+                                                                                     target:self
+                                                                                     action:@selector(baseImageSelectAgain:)];
+    if (self.selectedRow) {
+        // toolbarにbuttonを配置
+        NSArray *itemsBaseImageSelect = [NSArray arrayWithObjects:takePhotBack, spacer, share, spacer, baseImageSelectAgain, nil];
+        toolbar.items = itemsBaseImageSelect;
+    } else {
+        NSArray *items = [NSArray arrayWithObjects:takePhotBack, spacer, share, spacer, baseImageSelect, nil];
+        toolbar.items = items;
+    }
+
     [self.view addSubview:toolbar];
     
     // 保存した画像の読み出し
@@ -75,18 +89,14 @@
     UIImage *image= [[UIImage alloc] initWithContentsOfFile:path];
     self.imageView.image = image;
     
-    // ImageView の Outlet として imageView を用意した。
-    // imageView には予め画像を設定してあるので、ここで元の画像をとっておく。
     _origImage = self.imageView.image;
     _mouthImage = self.mouth.image;
     _noseImage = self.nose.image;
     _lefteyeImage = self.lefteye.image;
     _righteyeImage = self.righteye.image;
     
-    int count = 0;
-    
     // 画像のリサイズ
-    _origImage = [self resizeImage:_origImage newSize:CGSizeMake(240, 300)];
+    _origImage = [self resizeImage:_origImage newSize:CGSizeMake(312, 390)];
     
     // おまじない(結構重要。これが無いと、なかなか認識されない）
     UIGraphicsBeginImageContext(_origImage.size);
@@ -96,7 +106,6 @@
     
     // imageをmat形式に変換
     cv::Mat baseMat = [self cvMatFromUIImage:_origImage];
-    
     // 顔カスケードファイルの読み込み
     NSString* resDir = [[NSBundle mainBundle] resourcePath];
     const char *cascadeNameFace = "haarcascade_frontalface_alt.xml";
@@ -149,7 +158,6 @@
     // 口　カスケードファイルの読み込み
     NSString* resDirMouth = [[NSBundle mainBundle] resourcePath];
     const char *cascadeNameMouth = "haarcascade_mcs_mouth.xml";
-    NSLog(@"%s", cascadeNameMouth);
     
     char cascadePathMouth[PATH_MAX];
     sprintf(cascadePathMouth, "%s/%s", [resDirMouth cStringUsingEncoding:NSASCIIStringEncoding], cascadeNameMouth );
@@ -193,7 +201,7 @@
             NSLog(@"eyes_center x:%d y:%d", eyes_center.x, eyes_center.y);
             
             // 切り取り画像の表示
-            if ( count == 0 ) {
+            if ( eyesCount == 0 ) {
                 
                 // 切り取り
                 CGRect trimArea = CGRectMake( eyes_center.x-30, eyes_center.y-25, 60, 50);
@@ -208,8 +216,8 @@
                 _righteye.layer.cornerRadius = _righteye.frame.size.width * 0.1f;
                 _righteye.clipsToBounds = YES;
                 
-                count ++;
-            } else if (count == 1) {
+                eyesCount ++;
+            } else if (eyesCount == 1) {
                 
                 // 切り取り
                 CGRect trimArea = CGRectMake( eyes_center.x-30, eyes_center.y-25, 60, 50);
@@ -239,7 +247,7 @@
             CGImageRef srcImageRef = [_origImage CGImage];
             CGImageRef trimmedImageRef = CGImageCreateWithImageInRect(srcImageRef, trimArea);
             _noseImage = [UIImage imageWithCGImage:trimmedImageRef];
-                        
+            
             self.nose.image = _noseImage;
             // 切り出し画像の面取り
             _nose.layer.cornerRadius = _nose.frame.size.width * 0.1f;
@@ -271,12 +279,22 @@
             
         }
     }
-    
-    // 変換結果を画面に表示
-    _origImage = MatToUIImage(baseMat);
-//    UIImage *baseimage = [UIImage imageNamed:@"sample.jpg"];
-    self.imageView.image = _origImage;
-    
+
+    //プロジェクト内のファイルにアクセスできるオブジェクトを宣言
+    NSBundle *bundle = [NSBundle mainBundle];
+    //湯見込むプロパティリストのファイルパスをしてい。
+    NSString *pathBaseImage = [bundle pathForResource:@"PropertyList" ofType:@"plist"];
+    //プロパティリストのデータを取得
+    NSDictionary *dicBaseImage = [NSDictionary dictionaryWithContentsOfFile:pathBaseImage];
+    NSArray *document = [dicBaseImage objectForKey:@"document"];
+
+    if (!self.selectedRow) {
+        UIImage *baseImage = MatToUIImage(baseMat);
+        self.imageView.image = baseImage;
+    } else {
+        self.imageView.image = [UIImage imageNamed:document[self.selectedRow]];
+    }
+
 }
 
 // イメージをリサイズする
@@ -357,9 +375,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-// 撮影ボタンが押された時
+// 戻るボタンが押された時
 - (void)takePhotBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    int status = 0;
+    //ユーザデフォルトに書き込む
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:status forKey:@"status"];
+    [defaults synchronize];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    
 }
 
 // 保存・シェアボタンが押された時
@@ -459,6 +483,17 @@
     } failureBlock:nil];
 }
 
+// ベースイメージセレクトボタンが押された時
+- (void)baseImageSelect:(id)sender {
+    BaseImageSelectViewController *baseImageSelectViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BaseImageSelectViewController"];
+    [self presentViewController:baseImageSelectViewController animated:YES completion:nil];
+}
+
+// baseImageSelectAgainが押された時
+- (void) baseImageSelectAgain:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)rightEyemove:(UIPanGestureRecognizer *)sender {
     CGPoint rightEyemove = [sender translationInView:self.righteye];
     CGPoint homerighteye = _righteye.center;
@@ -534,6 +569,30 @@
     }
     CGFloat scale = [sender scale];
     self.righteye.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(scale, scale));
+}
+
+- (IBAction)rightRotation:(UIRotationGestureRecognizer *)sender {
+    CGFloat rotation = [sender rotation];
+    self.righteye.transform = CGAffineTransformMakeRotation(rotation);
+}
+
+- (IBAction)leftRotation:(UIRotationGestureRecognizer *)sender {
+    CGFloat rotation = [sender rotation];
+    self.lefteye.transform = CGAffineTransformMakeRotation(rotation);
+}
+
+- (IBAction)noseRotation:(UIRotationGestureRecognizer *)sender {
+    CGFloat rotation = [sender rotation];
+    self.nose.transform = CGAffineTransformMakeRotation(rotation);
+}
+
+- (IBAction)mouthRotation:(UIRotationGestureRecognizer *)sender {
+    CGFloat rotation = [sender rotation];
+    self.mouth.transform = CGAffineTransformMakeRotation(rotation);
+}
+
+- (IBAction)rightEyeTap:(UITapGestureRecognizer *)sender {
+    
 }
 
 

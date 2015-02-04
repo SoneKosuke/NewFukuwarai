@@ -7,10 +7,11 @@
 //
 
 #import "AlbumViewController.h"
-#import <UIKit/UIKit.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "AlbumTableViewCell.h"
 #import "PhotSelectViewController.h"
+#import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+
 
 @interface AlbumViewController ()<UITableViewDelegate, UITableViewDataSource> {
     ALAssetsLibrary *_library;
@@ -138,7 +139,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    NSLog(@"%d", [_photoImages count]);
     return [_photoImages count];
     
 }
