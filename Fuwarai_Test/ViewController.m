@@ -23,6 +23,7 @@
 @property (strong, nonatomic) AVCaptureStillImageOutput *stillImageOutput;
 @property (strong, nonatomic) AVCaptureSession *session;
 @property (strong, nonatomic) UIView *previewView;
+@property (nonatomic) int status;
 
 @end
 
@@ -32,9 +33,9 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    int status = [defaults integerForKey:@"status"];
+    _status = [defaults integerForKey:@"status"];
     
-    if (status == 0) {
+    if (_status == 0) {
         // 撮影ボタンを配置したツールバーを生成（下）
         UIToolbar *toolbarunder = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50)];
         toolbarunder.translucent = YES;
@@ -188,9 +189,9 @@
 - (void)album:(id)sender {
     
     //ユーザデフォルトに書き込む
-    int status = 1;
+    _status = 1;
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:status forKey:@"status"];
+    [defaults setInteger:_status forKey:@"status"];
     [defaults synchronize];
     
     // モーダルビューを閉じる
@@ -243,9 +244,9 @@
          }
          
          //ユーザデフォルトに書き込む
-         int status = 1;
+         _status = 1;
          NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-         [defaults setInteger:status forKey:@"status"];
+         [defaults setInteger:_status forKey:@"status"];
          [defaults synchronize];
          
          // モーダルビューを閉じる
@@ -297,10 +298,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         NSLog(@"save NG");
     }
     
-    int status = 1;
+    _status = 1;
     //ユーザデフォルトに書き込む
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:status forKey:@"status"];
+    [defaults setInteger:_status forKey:@"status"];
     [defaults synchronize];
     
     // モーダルビューを閉じる

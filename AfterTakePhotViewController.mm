@@ -31,6 +31,7 @@
     BOOL _albumWasFound;
     CGAffineTransform currentTransForm;
 }
+@property (nonatomic) int status;
 
 @end
 
@@ -39,10 +40,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    int status = 0;
+    NSLog(@"_receiveString%@", _receiveString);
+    _status = 0;
     //ユーザデフォルトに書き込む
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:status forKey:@"status"];
+    [defaults setInteger:_status forKey:@"status"];
     [defaults synchronize];
     int eyesCount = 0;
     
@@ -278,23 +280,10 @@
             _mouth.clipsToBounds = YES;
             
         }
-    }
-
-    //プロジェクト内のファイルにアクセスできるオブジェクトを宣言
-    NSBundle *bundle = [NSBundle mainBundle];
-    //湯見込むプロパティリストのファイルパスをしてい。
-    NSString *pathBaseImage = [bundle pathForResource:@"PropertyList" ofType:@"plist"];
-    //プロパティリストのデータを取得
-    NSDictionary *dicBaseImage = [NSDictionary dictionaryWithContentsOfFile:pathBaseImage];
-    NSArray *document = [dicBaseImage objectForKey:@"document"];
-
-    if (!self.selectedRow) {
+        
         UIImage *baseImage = MatToUIImage(baseMat);
         self.imageView.image = baseImage;
-    } else {
-        self.imageView.image = [UIImage imageNamed:document[self.selectedRow]];
     }
-
 }
 
 // イメージをリサイズする
@@ -377,17 +366,17 @@
 
 // 戻るボタンが押された時
 - (void)takePhotBack:(id)sender {
-    int status = 0;
+    _status = 0;
     //ユーザデフォルトに書き込む
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:status forKey:@"status"];
+    [defaults setInteger:_status forKey:@"status"];
     [defaults synchronize];
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [[UIApplication sharedApplication].delegate.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
     
 }
 
 // 保存・シェアボタンが押された時
-- (void) share:(id)sender {
+- (void)share:(id)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"保存・シェア"
                                                              delegate:self
                                                     cancelButtonTitle:@"キャンセル"
@@ -592,7 +581,19 @@
 }
 
 - (IBAction)rightEyeTap:(UITapGestureRecognizer *)sender {
+}
+
+- (IBAction)firstViewReturnActionForSegue:(UIStoryboardSegue *)segue
+{
+    //プロジェクト内のファイルにアクセスできるオブジェクトを宣言
+    NSBundle *bundle = [NSBundle mainBundle];
+    //湯見込むプロパティリストのファイルパスをしてい。
+    NSString *pathBaseImage = [bundle pathForResource:@"PropertyList" ofType:@"plist"];
+    //プロパティリストのデータを取得
+    NSDictionary *dicBaseImage = [NSDictionary dictionaryWithContentsOfFile:pathBaseImage];
+    NSArray *document = [dicBaseImage objectForKey:@"document"];
     
+    self.imageView.image = [UIImage imageNamed:document[self.selectedRow]];
 }
 
 

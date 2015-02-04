@@ -18,7 +18,9 @@ typedef NS_ENUM(NSUInteger, Class){
 @interface BaseImageSelectViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic) NSArray *kind;
-
+@property(nonatomic) int status;
+@property(nonatomic) NSString *sendString;
+@property(nonatomic) NSInteger row;
 @end
 
 @implementation BaseImageSelectViewController
@@ -86,25 +88,28 @@ typedef NS_ENUM(NSUInteger, Class){
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger row = indexPath.row;
-    if (row == 0) {
+    _row = indexPath.row;
+    if (_row == 0) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
-        
         //ユーザデフォルトに書き込む
-        int status = 1;
+        _status = 1;
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setInteger:status forKey:@"status"];
+        [defaults setInteger:_status forKey:@"status"];
         [defaults synchronize];
-        
-        // 画面遷移をプログラムで実装
-        AfterTakePhotViewController *afterTakePhotViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AfterTakePhotViewController"];
-        afterTakePhotViewController.selectedRow = row;
-        // PhotSelectViewControllerの起動
-        [self presentViewController:afterTakePhotViewController animated:YES completion:nil];
+        [self performSegueWithIdentifier:@"ManualUnwindSegue" sender:self];
     }
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //Segueの特定
+    if ( [[segue identifier] isEqualToString:@"ManualUnwindSegue"] ) {
+        AfterTakePhotViewController *afterTakePhotViewController = [segue destinationViewController];
+        //ここで遷移先ビューのクラスの変数receiveStringに値を渡している
+        afterTakePhotViewController.selectedRow = _row;
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

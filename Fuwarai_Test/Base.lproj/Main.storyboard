@@ -296,6 +296,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="JPq-nE-l5F"/>
                     <connections>
                         <outlet property="imageView" destination="nCu-EW-Jqj" id="Dv7-5s-J0U"/>
                         <outlet property="lefteye" destination="vg6-uR-Al7" id="dD9-9R-1V3"/>
@@ -371,7 +372,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="529.5" y="127"/>
+            <point key="canvasLocation" x="400.5" y="127"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="O3g-aH-uS2">
@@ -534,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQe-BZ-Rxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1281" y="127"/>
+            <point key="canvasLocation" x="1110" y="815"/>
         </scene>
         <!--Phot Select View Controller-->
         <scene sceneID="j75-Wl-zT0">
@@ -600,7 +601,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ilN-91-6Eu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2031" y="127"/>
+            <point key="canvasLocation" x="1860" y="815"/>
         </scene>
         <!--Base Image Select View Controller-->
         <scene sceneID="Kbo-uS-eJt">
@@ -611,6 +612,7 @@
                         <viewControllerLayoutGuide type="bottom" id="cOl-Vw-kjP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TfF-1o-L81">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="orp-WJ-LT8">
@@ -639,14 +641,14 @@
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="vbV-tG-2uD"/>
                                                             <exclude reference="mWF-iD-Wib"/>
+                                                            <exclude reference="vbV-tG-2uD"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact">
                                                         <mask key="constraints">
-                                                            <include reference="vbV-tG-2uD"/>
                                                             <include reference="mWF-iD-Wib"/>
+                                                            <include reference="vbV-tG-2uD"/>
                                                         </mask>
                                                     </variation>
                                                 </imageView>
@@ -663,14 +665,14 @@
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="o1A-p9-lVn"/>
                                                             <exclude reference="CMI-x0-OwT"/>
+                                                            <exclude reference="o1A-p9-lVn"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact">
                                                         <mask key="constraints">
-                                                            <include reference="o1A-p9-lVn"/>
                                                             <include reference="CMI-x0-OwT"/>
+                                                            <include reference="o1A-p9-lVn"/>
                                                         </mask>
                                                     </variation>
                                                 </label>
@@ -718,14 +720,14 @@
                                 </prototypes>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="pA3-yD-Yve"/>
                                         <exclude reference="FYZ-et-8ec"/>
+                                        <exclude reference="pA3-yD-Yve"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="pA3-yD-Yve"/>
                                         <include reference="FYZ-et-8ec"/>
+                                        <include reference="pA3-yD-Yve"/>
                                     </mask>
                                 </variation>
                             </tableView>
@@ -756,11 +758,13 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="orp-WJ-LT8" id="yn2-40-qGA"/>
+                        <segue destination="rM3-8P-CNN" kind="unwind" identifier="ManualUnwindSegue" unwindAction="firstViewReturnActionForSegue:" id="4cI-AH-YgG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWC-TJ-371" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="rM3-8P-CNN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2775" y="127"/>
+            <point key="canvasLocation" x="1152" y="127"/>
         </scene>
     </scenes>
     <resources>

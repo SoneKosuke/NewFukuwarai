@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *nose;
 @property (weak, nonatomic) IBOutlet UIImageView *mouth;
 @property NSInteger selectedRow;
+@property NSString *receiveString;
 - (IBAction)rightEyemove:(UIPanGestureRecognizer *)sender;
 - (IBAction)leftEyeMove:(UIPanGestureRecognizer *)sender;
 - (IBAction)noseMove:(UIPanGestureRecognizer *)sender;
