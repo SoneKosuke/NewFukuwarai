@@ -29,6 +29,5 @@
 - (IBAction)leftRotation:(UIRotationGestureRecognizer *)sender;
 - (IBAction)noseRotation:(UIRotationGestureRecognizer *)sender;
 - (IBAction)mouthRotation:(UIRotationGestureRecognizer *)sender;
-- (IBAction)rightEyeTap:(UITapGestureRecognizer *)sender;
 
 @end

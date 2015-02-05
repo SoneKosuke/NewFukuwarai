@@ -16,6 +16,9 @@
 		891C25BE1A80B1D3009C4AA1 /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 891C25BB1A80B1D3009C4AA1 /* dog.jpg */; };
 		891C25BF1A80B1D3009C4AA1 /* fish.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 891C25BC1A80B1D3009C4AA1 /* fish.jpg */; };
 		8937042E1A7DFA1900E71864 /* PhotSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8937042D1A7DFA1900E71864 /* PhotSelectViewController.m */; };
+		894E328C1A82FA7000225535 /* okame.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 894E328B1A82FA7000225535 /* okame.jpg */; };
+		894E328E1A83009100225535 /* dansei.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 894E328D1A83009100225535 /* dansei.jpg */; };
+		894E32921A83051900225535 /* umerareruDansei.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 894E32911A83051900225535 /* umerareruDansei.jpg */; };
 		894F3D831A5FC29600552369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 894F3D821A5FC29600552369 /* main.m */; };
 		894F3D861A5FC29600552369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 894F3D851A5FC29600552369 /* AppDelegate.m */; };
 		894F3D891A5FC29600552369 /* Fuwarai_Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 894F3D871A5FC29600552369 /* Fuwarai_Test.xcdatamodeld */; };
@@ -63,6 +66,9 @@
 		891C25BC1A80B1D3009C4AA1 /* fish.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fish.jpg; sourceTree = "<group>"; };
 		8937042C1A7DFA1900E71864 /* PhotSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotSelectViewController.h; sourceTree = "<group>"; };
 		8937042D1A7DFA1900E71864 /* PhotSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotSelectViewController.m; sourceTree = "<group>"; };
+		894E328B1A82FA7000225535 /* okame.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = okame.jpg; sourceTree = "<group>"; };
+		894E328D1A83009100225535 /* dansei.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dansei.jpg; sourceTree = "<group>"; };
+		894E32911A83051900225535 /* umerareruDansei.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = umerareruDansei.jpg; sourceTree = "<group>"; };
 		894F3D7D1A5FC29600552369 /* Fuwarai_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fuwarai_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		894F3D811A5FC29600552369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		894F3D821A5FC29600552369 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -193,7 +199,10 @@
 		894F3D801A5FC29600552369 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				894E32911A83051900225535 /* umerareruDansei.jpg */,
+				894E328B1A82FA7000225535 /* okame.jpg */,
 				891C25B81A80B1B2009C4AA1 /* CRI.jpg */,
+				894E328D1A83009100225535 /* dansei.jpg */,
 				891C25BA1A80B1D3009C4AA1 /* cat.jpg */,
 				891C25BB1A80B1D3009C4AA1 /* dog.jpg */,
 				891C25BC1A80B1D3009C4AA1 /* fish.jpg */,
@@ -312,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				891C25BD1A80B1D3009C4AA1 /* cat.jpg in Resources */,
+				894E32921A83051900225535 /* umerareruDansei.jpg in Resources */,
 				891C25BF1A80B1D3009C4AA1 /* fish.jpg in Resources */,
 				89514D691A74DB99009E0DAD /* haarcascade_mcs_mouth.xml in Resources */,
 				89514D671A74DB99009E0DAD /* haarcascade_frontalface_alt.xml in Resources */,
@@ -322,7 +332,9 @@
 				894F3D911A5FC29600552369 /* Images.xcassets in Resources */,
 				891C25A71A7FC100009C4AA1 /* PropertyList.plist in Resources */,
 				891C25BE1A80B1D3009C4AA1 /* dog.jpg in Resources */,
+				894E328C1A82FA7000225535 /* okame.jpg in Resources */,
 				89514D681A74DB99009E0DAD /* haarcascade_mcs_nose.xml in Resources */,
+				894E328E1A83009100225535 /* dansei.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

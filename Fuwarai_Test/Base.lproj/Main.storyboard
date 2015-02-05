@@ -19,23 +19,23 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="faceOutLine" translatesAutoresizingMaskIntoConstraints="NO" id="DeM-WV-lAT">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="340" id="A3C-hn-cHx">
-                                        <variation key="widthClass=compact" constant="394"/>
+                                    <constraint firstAttribute="width" constant="300" id="Ll9-pQ-JRs">
+                                        <variation key="widthClass=compact" constant="200"/>
                                     </constraint>
-                                    <constraint firstAttribute="width" constant="320" id="fj0-hF-wP9">
-                                        <variation key="widthClass=compact" constant="378"/>
+                                    <constraint firstAttribute="height" constant="300" id="Xbx-Bu-mLL">
+                                        <variation key="widthClass=compact" constant="200"/>
                                     </constraint>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="A3C-hn-cHx"/>
-                                        <exclude reference="fj0-hF-wP9"/>
+                                        <exclude reference="Ll9-pQ-JRs"/>
+                                        <exclude reference="Xbx-Bu-mLL"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="A3C-hn-cHx"/>
-                                        <include reference="fj0-hF-wP9"/>
+                                        <include reference="Ll9-pQ-JRs"/>
+                                        <include reference="Xbx-Bu-mLL"/>
                                     </mask>
                                 </variation>
                             </imageView>
@@ -103,7 +103,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wk0-bp-eu3">
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wk0-bp-eu3">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -130,10 +130,9 @@
                                     <outletCollection property="gestureRecognizers" destination="kJw-rc-oRW" appends="YES" id="d0H-X2-N5y"/>
                                     <outletCollection property="gestureRecognizers" destination="gGo-QV-nrA" appends="YES" id="Szj-Lk-clE"/>
                                     <outletCollection property="gestureRecognizers" destination="7hW-iC-LF3" appends="YES" id="cl8-Xo-0sJ"/>
-                                    <outletCollection property="gestureRecognizers" destination="3uU-Qe-lig" appends="YES" id="M6f-tB-E6F"/>
                                 </connections>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vg6-uR-Al7">
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vg6-uR-Al7">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -162,7 +161,7 @@
                                     <outletCollection property="gestureRecognizers" destination="nYQ-u5-zrs" appends="YES" id="wY2-03-AvW"/>
                                 </connections>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Czy-3Q-vAY">
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Czy-3Q-vAY">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -191,7 +190,7 @@
                                     <outletCollection property="gestureRecognizers" destination="BRX-tB-g1M" appends="YES" id="mMh-Xh-GgU"/>
                                 </connections>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TRR-Jb-Nnp">
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TRR-Jb-Nnp">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -225,7 +224,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="nCu-EW-Jqj" secondAttribute="centerY" constant="80" id="HXB-WS-ahP">
-                                <variation key="widthClass=compact" constant="31.5"/>
+                                <variation key="widthClass=compact" constant="21.5"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="TRR-Jb-Nnp" secondAttribute="centerY" constant="-25" id="Xke-iJ-Vvp">
                                 <variation key="widthClass=compact" constant="-62"/>
@@ -366,11 +365,6 @@
                         <action selector="mouthRotation:" destination="t5a-c0-Zse" id="7gl-H3-Qro"/>
                     </connections>
                 </rotationGestureRecognizer>
-                <tapGestureRecognizer id="3uU-Qe-lig" userLabel="rightEyeTap">
-                    <connections>
-                        <action selector="rightEyeTap:" destination="t5a-c0-Zse" id="3hq-md-9gX"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="400.5" y="127"/>
         </scene>
@@ -573,7 +567,7 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="pM1-PL-rOY" secondAttribute="centerX" id="5bN-78-pI5"/>
                             <constraint firstAttribute="centerY" secondItem="pM1-PL-rOY" secondAttribute="centerY" constant="0.5" id="AFQ-eT-eOY">
-                                <variation key="widthClass=compact" constant="10"/>
+                                <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
                         </constraints>
                         <variation key="default">
@@ -679,10 +673,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerX" secondItem="j6c-Tt-Oa0" secondAttribute="centerX" constant="-118.5" id="DXO-Oe-yk0">
-                                                    <variation key="widthClass=compact" constant="-76.5"/>
+                                                    <variation key="widthClass=compact" constant="-79.5"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="Nl7-wb-Zbd" secondAttribute="centerX" constant="71.5" id="F9C-oZ-XOD">
-                                                    <variation key="widthClass=compact" constant="78"/>
+                                                    <variation key="widthClass=compact" constant="75"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="j6c-Tt-Oa0" secondAttribute="centerY" constant="-0.25" id="XnO-EL-aE7"/>
                                                 <constraint firstAttribute="centerY" secondItem="Nl7-wb-Zbd" secondAttribute="centerY" constant="4" id="mwb-Ce-znB"/>
@@ -768,6 +762,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="faceOutLine" width="98" height="114"/>
+        <image name="faceOutLine" width="100" height="100"/>
     </resources>
 </document>

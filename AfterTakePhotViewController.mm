@@ -32,6 +32,11 @@
     CGAffineTransform currentTransForm;
 }
 @property (nonatomic) int status;
+@property (nonatomic) NSInteger noseImageDoubleTapCount;
+@property (nonatomic) NSInteger mouthImageDoubleTapCount;
+@property (nonatomic) NSInteger righteyeImageDoubleTapCount;
+@property (nonatomic) NSInteger lefteyeImageDoubleTapCount;
+@property (nonatomic) CGFloat mouthrotation;
 
 @end
 
@@ -39,8 +44,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"_receiveString%@", _receiveString);
+    _noseImageDoubleTapCount = 0;
+    _mouthImageDoubleTapCount = 0;
+    _righteyeImageDoubleTapCount = 0;
+    _lefteyeImageDoubleTapCount = 0;
     _status = 0;
     //ユーザデフォルトに書き込む
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -280,9 +287,30 @@
             _mouth.clipsToBounds = YES;
             
         }
-        
+        // ベースイメージを表示
         UIImage *baseImage = MatToUIImage(baseMat);
         self.imageView.image = baseImage;
+        
+        // ダブルタップイベントを作成
+        UITapGestureRecognizer *noseImageDoubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                             action:@selector(noseImageDoubleTap:)];
+        noseImageDoubleTap.numberOfTapsRequired = 2;
+        [self.nose addGestureRecognizer:noseImageDoubleTap];
+        
+        UITapGestureRecognizer *mouthImageDoubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                             action:@selector(mouthImageDoubleTap:)];
+        mouthImageDoubleTap.numberOfTapsRequired = 2;
+        [self.mouth addGestureRecognizer:mouthImageDoubleTap];
+        
+        UITapGestureRecognizer *righteyeImageDoubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                             action:@selector(righteyeImageDoubleTap:)];
+        righteyeImageDoubleTap.numberOfTapsRequired = 2;
+        [self.righteye addGestureRecognizer:righteyeImageDoubleTap];
+        
+        UITapGestureRecognizer *lefteyeImageDoubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                             action:@selector(lefteyeImageDoubleTap:)];
+        lefteyeImageDoubleTap.numberOfTapsRequired = 2;
+        [self.lefteye addGestureRecognizer:lefteyeImageDoubleTap];
     }
 }
 
@@ -391,7 +419,8 @@
         case 0:
         {
             // キャプチャ画像を描画する対象を生成します。
-            UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO, 0);
+            CGSize size = CGSizeMake(self.imageView.frame.size.width , self.imageView.frame.size.height);
+            UIGraphicsBeginImageContextWithOptions(size, NO, 0);
             CGContextRef context = UIGraphicsGetCurrentContext();
             
             // Windowの現在の表示内容を１つずつ描画して行きます。
@@ -484,7 +513,7 @@
 }
 
 - (IBAction)rightEyemove:(UIPanGestureRecognizer *)sender {
-    CGPoint rightEyemove = [sender translationInView:self.righteye];
+    CGPoint rightEyemove = [sender translationInView:self.imageView];
     CGPoint homerighteye = _righteye.center;
     homerighteye.x += rightEyemove.x;
     homerighteye.y += rightEyemove.y;
@@ -494,7 +523,7 @@
 }
 
 - (IBAction)leftEyeMove:(UIPanGestureRecognizer *)sender {
-    CGPoint leftEyeMove = [sender translationInView:self.lefteye];
+    CGPoint leftEyeMove = [sender translationInView:self.imageView];
     CGPoint homelefteye = _lefteye.center;
     homelefteye.x += leftEyeMove.x;
     homelefteye.y += leftEyeMove.y;
@@ -504,7 +533,7 @@
 }
 
 - (IBAction)noseMove:(UIPanGestureRecognizer *)sender {
-    CGPoint noseMove = [sender translationInView:self.nose];
+    CGPoint noseMove = [sender translationInView:self.imageView];
     CGPoint homeLoc = _nose.center;
     homeLoc.x += noseMove.x;
     homeLoc.y += noseMove.y;
@@ -514,7 +543,7 @@
 }
 
 - (IBAction)mouthMove:(UIPanGestureRecognizer *)sender {
-    CGPoint mouthMove = [sender translationInView:self.mouth];
+    CGPoint mouthMove = [sender translationInView:self.imageView];
     CGPoint homeLoc = _mouth.center;
     homeLoc.x += mouthMove.x;
     homeLoc.y += mouthMove.y;
@@ -576,12 +605,54 @@
 }
 
 - (IBAction)mouthRotation:(UIRotationGestureRecognizer *)sender {
-    CGFloat rotation = [sender rotation];
-    self.mouth.transform = CGAffineTransformMakeRotation(rotation);
+    _mouthrotation = [sender rotation];
+    self.mouth.transform = CGAffineTransformMakeRotation(_mouthrotation);
 }
 
-- (IBAction)rightEyeTap:(UITapGestureRecognizer *)sender {
+- (void)noseImageDoubleTap:(UITapGestureRecognizer *)recognizer {
+    currentTransForm = self.nose.transform;
+    int noseImageDoubleTapCountRemainder = _noseImageDoubleTapCount % 2;
+    if (noseImageDoubleTapCountRemainder == 0) {
+        self.nose.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(2, 2));
+    } else {
+        self.nose.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(0.5f, 0.5f));
+    }
+    _noseImageDoubleTapCount ++;
 }
+
+- (void)mouthImageDoubleTap:(UITapGestureRecognizer *)recognizer {
+    currentTransForm = self.mouth.transform;
+    int mouthImageDoubleTapCountRemainder = _mouthImageDoubleTapCount % 2;
+    if (mouthImageDoubleTapCountRemainder == 0) {
+        self.mouth.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(2, 2));
+    } else {
+        self.mouth.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(0.5f, 0.5f));
+    }
+    _mouthImageDoubleTapCount ++;
+}
+
+- (void)righteyeImageDoubleTap:(UITapGestureRecognizer *)recognizer {
+    currentTransForm = self.righteye.transform;
+    int righteyeImageDoubleTapCountRemainder = _righteyeImageDoubleTapCount % 2;
+    if (righteyeImageDoubleTapCountRemainder == 0) {
+        self.righteye.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(2, 2));
+    } else {
+        self.righteye.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(0.5f, 0.5f));
+    }
+    _righteyeImageDoubleTapCount ++;
+}
+
+- (void)lefteyeImageDoubleTap:(UITapGestureRecognizer *)recognizer {
+    currentTransForm = self.lefteye.transform;
+    int lefteyeImageDoubleTapCountRemainder = _lefteyeImageDoubleTapCount % 2;
+    if (lefteyeImageDoubleTapCountRemainder == 0) {
+        self.lefteye.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(2, 2));
+    } else {
+        self.lefteye.transform = CGAffineTransformConcat(currentTransForm, CGAffineTransformMakeScale(0.5f, 0.5f));
+    }
+    _lefteyeImageDoubleTapCount ++;
+}
+
 
 - (IBAction)firstViewReturnActionForSegue:(UIStoryboardSegue *)segue
 {

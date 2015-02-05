@@ -6,17 +6,23 @@
 	<array>
 		<string></string>
 		<string>CRI.jpg</string>
+		<string>dansei.jpg</string>
+		<string>umerareruDansei.jpg</string>
 		<string>fish.jpg</string>
 		<string>cat.jpg</string>
 		<string>dog.jpg</string>
+		<string>okame.jpg</string>
 	</array>
 	<key>kind</key>
 	<array>
 		<string>さつえい がぞう</string>
-		<string>ショートヘア女性</string>
+		<string>じょせい</string>
+		<string>だんせい</string>
+		<string>埋められたひと</string>
 		<string>さかな</string>
 		<string>ねこ</string>
 		<string>いぬ</string>
+		<string>おかめ</string>
 	</array>
 </dict>
 </plist>
