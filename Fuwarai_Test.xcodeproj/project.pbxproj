@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8915417E1A7A716600501DC1 /* AlbumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8915417D1A7A716600501DC1 /* AlbumTableViewCell.m */; };
+		89165D001A837BA100D59515 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89165CFF1A837BA100D59515 /* Social.framework */; };
 		891C25A11A7FB4F5009C4AA1 /* BaseImageSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C25A01A7FB4F5009C4AA1 /* BaseImageSelectViewController.m */; };
 		891C25A41A7FBB5B009C4AA1 /* BaseImageSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C25A31A7FBB5B009C4AA1 /* BaseImageSelectTableViewCell.m */; };
 		891C25A71A7FC100009C4AA1 /* PropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 891C25A61A7FC100009C4AA1 /* PropertyList.plist */; };
@@ -55,6 +56,7 @@
 /* Begin PBXFileReference section */
 		8915417C1A7A716600501DC1 /* AlbumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumTableViewCell.h; sourceTree = "<group>"; };
 		8915417D1A7A716600501DC1 /* AlbumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumTableViewCell.m; sourceTree = "<group>"; };
+		89165CFF1A837BA100D59515 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		891C259F1A7FB4F5009C4AA1 /* BaseImageSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseImageSelectViewController.h; sourceTree = "<group>"; };
 		891C25A01A7FB4F5009C4AA1 /* BaseImageSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseImageSelectViewController.m; sourceTree = "<group>"; };
 		891C25A21A7FBB5B009C4AA1 /* BaseImageSelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseImageSelectTableViewCell.h; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89165D001A837BA100D59515 /* Social.framework in Frameworks */,
 				899AF4B41A7C8F5C007518C5 /* ImageIO.framework in Frameworks */,
 				89B315841A77E79600014D05 /* UIKit.framework in Frameworks */,
 				89B3157F1A77E21000014D05 /* QuartzCore.framework in Frameworks */,
@@ -153,6 +156,7 @@
 		894F3D741A5FC29600552369 = {
 			isa = PBXGroup;
 			children = (
+				89165CFF1A837BA100D59515 /* Social.framework */,
 				899AF4B31A7C8F5C007518C5 /* ImageIO.framework */,
 				894F3DA91A5FC42F00552369 /* AVFoundation.framework */,
 				89B315831A77E79600014D05 /* UIKit.framework */,

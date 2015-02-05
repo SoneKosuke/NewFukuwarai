@@ -366,7 +366,7 @@
                     </connections>
                 </rotationGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="400.5" y="127"/>
+            <point key="canvasLocation" x="454.5" y="127"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="O3g-aH-uS2">
@@ -673,10 +673,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerX" secondItem="j6c-Tt-Oa0" secondAttribute="centerX" constant="-118.5" id="DXO-Oe-yk0">
-                                                    <variation key="widthClass=compact" constant="-79.5"/>
+                                                    <variation key="widthClass=compact" constant="-82.5"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="Nl7-wb-Zbd" secondAttribute="centerX" constant="71.5" id="F9C-oZ-XOD">
-                                                    <variation key="widthClass=compact" constant="75"/>
+                                                    <variation key="widthClass=compact" constant="72"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="j6c-Tt-Oa0" secondAttribute="centerY" constant="-0.25" id="XnO-EL-aE7"/>
                                                 <constraint firstAttribute="centerY" secondItem="Nl7-wb-Zbd" secondAttribute="centerY" constant="4" id="mwb-Ce-znB"/>

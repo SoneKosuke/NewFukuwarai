@@ -13,6 +13,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
+#import <Social/Social.h>
 
 
 @interface AfterTakePhotViewController (){
@@ -409,7 +410,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"キャンセル"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"保存", @"シェア", nil];
+                                                    otherButtonTitles:@"カメラロールに保存", @"FaceBookでシェア", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -468,12 +469,64 @@
                 [self addAssetURL:assetURL AlbumURL:_groupURL];
                 }
              ];
-
-            [self dismissViewControllerAnimated:YES completion:nil];
         }
             break;
         case 1:
-            NSLog(@"シェアを選択");
+            // 組み込みのFacebookが利用可能な端末かを検証する
+            if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+                
+                // キャプチャ画像を描画する対象を生成します。
+                CGSize size = CGSizeMake(self.imageView.frame.size.width , self.imageView.frame.size.height);
+                UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+                CGContextRef context = UIGraphicsGetCurrentContext();
+                
+                // Windowの現在の表示内容を１つずつ描画して行きます。
+                for (UIWindow *aWindow in [[UIApplication sharedApplication] windows]) {
+                    [aWindow.layer renderInContext:context];
+                }
+                
+                // 描画した内容をUIImageとして受け取ります。
+                UIImage *capturedImage = UIGraphicsGetImageFromCurrentImageContext();
+                
+                // 描画を終了します。
+                UIGraphicsEndImageContext();
+                
+                // Facebook投稿機能のインスタンスを作成する
+                SLComposeViewController *slComposeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+                
+                // 投稿するコンテンツを設定する
+                // 表示する文字列
+                [slComposeViewController setInitialText:@"Fukuwarai"];
+                // URL
+//                [slComposeViewController addURL:[NSURL URLWithString:@"http://www.yoheim.net/"]];
+                // 画像
+                [slComposeViewController addImage:capturedImage];
+                
+                // 処理終了後に呼び出されるコールバックを指定する
+                [slComposeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
+                    
+                    switch (result) {
+                        case SLComposeViewControllerResultDone:
+                            NSLog(@"Done!!");
+                            break;
+                        case SLComposeViewControllerResultCancelled:
+                            NSLog(@"Cancel!!");
+                    }
+                }];  
+                
+                // 表示する
+                [self presentViewController:slComposeViewController animated:YES completion:nil];    
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc]
+                                          initWithTitle:@"シェアできませんでした。"
+                                          message:@"FaceBookにサインインしてください。"
+                                          delegate:self
+                                          cancelButtonTitle:@"閉じる"
+                                          otherButtonTitles:nil];
+                
+                [alertView show];
+
+            }
             break;
         default:
             NSLog(@"キャンセルボタンがクリックされました");
@@ -664,7 +717,11 @@
     NSDictionary *dicBaseImage = [NSDictionary dictionaryWithContentsOfFile:pathBaseImage];
     NSArray *document = [dicBaseImage objectForKey:@"document"];
     
-    self.imageView.image = [UIImage imageNamed:document[self.selectedRow]];
+    if (self.selectedRow == 0) {
+        self.imageView.image = _origImage;
+    } else {
+        self.imageView.image = [UIImage imageNamed:document[self.selectedRow]];
+    }
 }
 
 

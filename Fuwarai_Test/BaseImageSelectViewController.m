@@ -89,16 +89,12 @@ typedef NS_ENUM(NSUInteger, Class){
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _row = indexPath.row;
-    if (_row == 0) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
-        //ユーザデフォルトに書き込む
-        _status = 1;
-        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setInteger:_status forKey:@"status"];
-        [defaults synchronize];
-        [self performSegueWithIdentifier:@"ManualUnwindSegue" sender:self];
-    }
+    //ユーザデフォルトに書き込む
+    _status = 1;
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:_status forKey:@"status"];
+    [defaults synchronize];
+    [self performSegueWithIdentifier:@"ManualUnwindSegue" sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
