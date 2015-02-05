@@ -37,6 +37,7 @@
 		89514D691A74DB99009E0DAD /* haarcascade_mcs_mouth.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89514D651A74DB99009E0DAD /* haarcascade_mcs_mouth.xml */; };
 		898F7B541A7F100C00E91255 /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F7B531A7F100B00E91255 /* AlbumViewController.m */; };
 		899AF4B41A7C8F5C007518C5 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899AF4B31A7C8F5C007518C5 /* ImageIO.framework */; };
+		89A0845B1A83E7E900C59845 /* Bulb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 89A0845A1A83E7E900C59845 /* Bulb.jpg */; };
 		89B3157B1A77326C00014D05 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89514D6E1A75D30A009E0DAD /* AssetsLibrary.framework */; };
 		89B3157D1A77E20100014D05 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B3157C1A77E20100014D05 /* CoreGraphics.framework */; };
 		89B3157F1A77E21000014D05 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B3157E1A77E21000014D05 /* QuartzCore.framework */; };
@@ -97,6 +98,7 @@
 		898F7B521A7F100B00E91255 /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewController.h; sourceTree = "<group>"; };
 		898F7B531A7F100B00E91255 /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
 		899AF4B31A7C8F5C007518C5 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		89A0845A1A83E7E900C59845 /* Bulb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bulb.jpg; sourceTree = "<group>"; };
 		89B3157C1A77E20100014D05 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		89B3157E1A77E21000014D05 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		89B315831A77E79600014D05 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -203,6 +205,7 @@
 		894F3D801A5FC29600552369 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				89A0845A1A83E7E900C59845 /* Bulb.jpg */,
 				894E32911A83051900225535 /* umerareruDansei.jpg */,
 				894E328B1A82FA7000225535 /* okame.jpg */,
 				891C25B81A80B1B2009C4AA1 /* CRI.jpg */,
@@ -336,6 +339,7 @@
 				894F3D911A5FC29600552369 /* Images.xcassets in Resources */,
 				891C25A71A7FC100009C4AA1 /* PropertyList.plist in Resources */,
 				891C25BE1A80B1D3009C4AA1 /* dog.jpg in Resources */,
+				89A0845B1A83E7E900C59845 /* Bulb.jpg in Resources */,
 				894E328C1A82FA7000225535 /* okame.jpg in Resources */,
 				89514D681A74DB99009E0DAD /* haarcascade_mcs_nose.xml in Resources */,
 				894E328E1A83009100225535 /* dansei.jpg in Resources */,

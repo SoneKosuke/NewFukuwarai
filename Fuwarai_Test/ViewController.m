@@ -24,6 +24,7 @@
 @property (strong, nonatomic) AVCaptureSession *session;
 @property (strong, nonatomic) UIView *previewView;
 @property (nonatomic) int status;
+@property (nonatomic) NSInteger flashStatus;
 
 @end
 
@@ -41,7 +42,7 @@
         toolbarunder.translucent = YES;
         
         // アルバムボタンを生成する
-        UIBarButtonItem *album = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
+        UIBarButtonItem *album = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
                                                                                 target:self
                                                                                 action:@selector(album:)];
         // カメラマークボタンを生成する
@@ -53,7 +54,7 @@
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                target:nil action:nil];
         // ライブラリボタンを生成する
-        UIBarButtonItem *library = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
+        UIBarButtonItem *library = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
                                                                              target:self
                                                                              action:@selector(openLibrary:)];
         
@@ -72,9 +73,17 @@
         UIBarButtonItem *turnover = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                                                                                target:self
                                                                                action:@selector(turnover:)];
+        //web戻るボタン
+        UIButton *customFlashButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 23,23)];
+        //ボタンに画像配置
+        [customFlashButton setBackgroundImage:[UIImage imageNamed:@"Bulb.jpg"] forState:UIControlStateNormal];
+        //ボタンにイベントを与える。
+        [customFlashButton addTarget:self action:@selector(flash:) forControlEvents:UIControlEventTouchUpInside];
+        //UIBarButtonItemにUIButtonをCustomViewとして配置する。
+        UIBarButtonItem *flash = [[UIBarButtonItem alloc]initWithCustomView:customFlashButton];
         
         // toolbarunderにbuttonを配置
-        NSArray *itemstop = [NSArray arrayWithObjects:turnover, spacer, nil];
+        NSArray *itemstop = [NSArray arrayWithObjects:turnover, spacer,flash, spacer, spacer, spacer,nil];
         
         toolbartop.items = itemstop;
         [self.view addSubview:toolbartop];
@@ -185,6 +194,42 @@
     }
 }
 
+// flash
+- (void)flash:(id)sender {
+    switch (_flashStatus) {
+        case 1:
+        {
+            AVCaptureDevice *flashLight = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+            if([flashLight isTorchAvailable] && [flashLight isTorchModeSupported:AVCaptureTorchModeOn])
+            {
+                BOOL success = [flashLight lockForConfiguration:nil];
+                if(success)
+                {
+                    [flashLight setTorchMode:AVCaptureTorchModeOn];
+                    [flashLight unlockForConfiguration];
+                }
+            }
+        }
+            _flashStatus = 0;
+            break;
+            
+        default:
+        {
+            AVCaptureDevice *flashLight = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+            if([flashLight isTorchAvailable] && [flashLight isTorchModeSupported:AVCaptureTorchModeOff])
+            {
+                BOOL success = [flashLight lockForConfiguration:nil];
+                if(success)
+                {
+                    [flashLight setTorchMode:AVCaptureTorchModeOff];
+                    [flashLight unlockForConfiguration];
+                }
+            }
+        }
+            _flashStatus = 1;
+            break;
+    }
+}
 // アルバムボタン実行時
 - (void)album:(id)sender {
     

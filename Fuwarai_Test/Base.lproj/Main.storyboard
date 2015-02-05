@@ -444,10 +444,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerX" secondItem="6Lf-G7-kYl" secondAttribute="centerX" constant="71.5" id="6Qy-is-tiI">
-                                                    <variation key="widthClass=compact" constant="78"/>
+                                                    <variation key="widthClass=compact" constant="72"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="ZZI-ew-2IO" secondAttribute="centerX" constant="-118.5" id="gXk-2v-pSF">
-                                                    <variation key="widthClass=compact" constant="-76.5"/>
+                                                    <variation key="widthClass=compact" constant="-82.5"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="ZZI-ew-2IO" secondAttribute="centerY" constant="-0.25" id="hyJ-58-B6O"/>
                                                 <constraint firstAttribute="centerY" secondItem="6Lf-G7-kYl" secondAttribute="centerY" constant="4" id="kCL-VC-dDa"/>
@@ -496,29 +496,59 @@
                                     </mask>
                                 </variation>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AlbumList" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUy-om-g1z">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="314" id="chx-Nq-zef"/>
+                                    <constraint firstAttribute="height" constant="36" id="p4u-Zt-4zf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="chx-Nq-zef"/>
+                                        <exclude reference="p4u-Zt-4zf"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="chx-Nq-zef"/>
+                                        <include reference="p4u-Zt-4zf"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="qe5-cJ-KDa" secondAttribute="centerX" id="8DW-So-Hfq"/>
+                            <constraint firstItem="qe5-cJ-KDa" firstAttribute="centerX" secondItem="fUy-om-g1z" secondAttribute="centerX" id="99a-eG-RrO"/>
                             <constraint firstAttribute="centerY" secondItem="qe5-cJ-KDa" secondAttribute="centerY" constant="125.5" id="W1c-wo-Owj">
-                                <variation key="widthClass=compact" constant="22"/>
+                                <variation key="widthClass=compact" constant="-12"/>
                             </constraint>
+                            <constraint firstAttribute="centerY" secondItem="fUy-om-g1z" secondAttribute="centerY" constant="202" id="df8-9U-eeZ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="qe5-cJ-KDa"/>
+                                <exclude reference="fUy-om-g1z"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="df8-9U-eeZ"/>
                                 <exclude reference="8DW-So-Hfq"/>
+                                <exclude reference="99a-eG-RrO"/>
                                 <exclude reference="W1c-wo-Owj"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="qe5-cJ-KDa"/>
+                                <include reference="fUy-om-g1z"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="df8-9U-eeZ"/>
                                 <include reference="8DW-So-Hfq"/>
+                                <include reference="99a-eG-RrO"/>
                                 <include reference="W1c-wo-Owj"/>
                             </mask>
                         </variation>
@@ -673,10 +703,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerX" secondItem="j6c-Tt-Oa0" secondAttribute="centerX" constant="-118.5" id="DXO-Oe-yk0">
-                                                    <variation key="widthClass=compact" constant="-82.5"/>
+                                                    <variation key="widthClass=compact" constant="-85.5"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="Nl7-wb-Zbd" secondAttribute="centerX" constant="71.5" id="F9C-oZ-XOD">
-                                                    <variation key="widthClass=compact" constant="72"/>
+                                                    <variation key="widthClass=compact" constant="69"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="j6c-Tt-Oa0" secondAttribute="centerY" constant="-0.25" id="XnO-EL-aE7"/>
                                                 <constraint firstAttribute="centerY" secondItem="Nl7-wb-Zbd" secondAttribute="centerY" constant="4" id="mwb-Ce-znB"/>
@@ -725,28 +755,62 @@
                                     </mask>
                                 </variation>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TemplateList" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udb-Nj-lZF">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="314" id="kHr-bg-i4T"/>
+                                    <constraint firstAttribute="height" constant="47" id="knv-Cb-BIz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="kHr-bg-i4T"/>
+                                        <exclude reference="knv-Cb-BIz"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="kHr-bg-i4T"/>
+                                        <include reference="knv-Cb-BIz"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="orp-WJ-LT8" secondAttribute="centerY" id="AK2-Jn-fgT"/>
+                            <constraint firstAttribute="centerY" secondItem="orp-WJ-LT8" secondAttribute="centerY" id="AK2-Jn-fgT">
+                                <variation key="widthClass=compact" constant="-12"/>
+                            </constraint>
                             <constraint firstAttribute="centerX" secondItem="orp-WJ-LT8" secondAttribute="centerX" id="YOt-nk-oMZ"/>
+                            <constraint firstAttribute="centerY" secondItem="Udb-Nj-lZF" secondAttribute="centerY" constant="207.5" id="ntW-Ym-Zsg">
+                                <variation key="widthClass=compact" constant="208"/>
+                            </constraint>
+                            <constraint firstItem="orp-WJ-LT8" firstAttribute="centerX" secondItem="Udb-Nj-lZF" secondAttribute="centerX" id="vns-T9-rYM"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="orp-WJ-LT8"/>
+                                <exclude reference="Udb-Nj-lZF"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="ntW-Ym-Zsg"/>
                                 <exclude reference="AK2-Jn-fgT"/>
                                 <exclude reference="YOt-nk-oMZ"/>
+                                <exclude reference="vns-T9-rYM"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="orp-WJ-LT8"/>
+                                <include reference="Udb-Nj-lZF"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="ntW-Ym-Zsg"/>
                                 <include reference="AK2-Jn-fgT"/>
                                 <include reference="YOt-nk-oMZ"/>
+                                <include reference="vns-T9-rYM"/>
                             </mask>
                         </variation>
                     </view>

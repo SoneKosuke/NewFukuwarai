@@ -211,7 +211,7 @@
             NSLog(@"eyes_center x:%d y:%d", eyes_center.x, eyes_center.y);
             
             // 切り取り画像の表示
-            if ( eyesCount == 0 ) {
+            if (eyesCount == 0) {
                 
                 // 切り取り
                 CGRect trimArea = CGRectMake( eyes_center.x-30, eyes_center.y-25, 60, 50);
@@ -410,7 +410,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"キャンセル"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"カメラロールに保存", @"FaceBookでシェア", nil];
+                                                    otherButtonTitles:@"カメラロールに保存", @"FaceBookでシェア", @"Twitterでシェア", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -420,14 +420,20 @@
         case 0:
         {
             // キャプチャ画像を描画する対象を生成します。
-            CGSize size = CGSizeMake(self.imageView.frame.size.width , self.imageView.frame.size.height);
+            CGSize size = CGSizeMake(self.imageView.bounds.size.width , self.imageView.bounds.size.height);
             UIGraphicsBeginImageContextWithOptions(size, NO, 0);
             CGContextRef context = UIGraphicsGetCurrentContext();
             
-            // Windowの現在の表示内容を１つずつ描画して行きます。
-            for (UIWindow *aWindow in [[UIApplication sharedApplication] windows]) {
-                [aWindow.layer renderInContext:context];
-            }
+            // コンテキストの位置を切り取り開始位置に合わせる
+            CGPoint point = self.imageView.frame.origin;
+            CGAffineTransform affineMoveLeftTop
+            = CGAffineTransformMakeTranslation(
+                                               -(int)point.x ,
+                                               -(int)point.y );
+            CGContextConcatCTM(context , affineMoveLeftTop );
+            
+            // viewから切り取る
+            [(CALayer*)self.view.layer renderInContext:context];
             
             // 描画した内容をUIImageとして受け取ります。
             UIImage *capturedImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -476,14 +482,20 @@
             if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
                 
                 // キャプチャ画像を描画する対象を生成します。
-                CGSize size = CGSizeMake(self.imageView.frame.size.width , self.imageView.frame.size.height);
+                CGSize size = CGSizeMake(self.imageView.bounds.size.width , self.imageView.bounds.size.height);
                 UIGraphicsBeginImageContextWithOptions(size, NO, 0);
                 CGContextRef context = UIGraphicsGetCurrentContext();
                 
-                // Windowの現在の表示内容を１つずつ描画して行きます。
-                for (UIWindow *aWindow in [[UIApplication sharedApplication] windows]) {
-                    [aWindow.layer renderInContext:context];
-                }
+                // コンテキストの位置を切り取り開始位置に合わせる
+                CGPoint point = self.imageView.frame.origin;
+                CGAffineTransform affineMoveLeftTop
+                = CGAffineTransformMakeTranslation(
+                                                   -(int)point.x ,
+                                                   -(int)point.y );
+                CGContextConcatCTM(context , affineMoveLeftTop );
+                
+                // viewから切り取る
+                [(CALayer*)self.view.layer renderInContext:context];
                 
                 // 描画した内容をUIImageとして受け取ります。
                 UIImage *capturedImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -526,6 +538,70 @@
                 
                 [alertView show];
 
+            }
+            break;
+        case 2:
+            // 組み込みのTwitterが利用可能な端末かを検証する
+            if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+                
+                // キャプチャ画像を描画する対象を生成します。
+                CGSize size = CGSizeMake(self.imageView.bounds.size.width , self.imageView.bounds.size.height);
+                UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+                CGContextRef context = UIGraphicsGetCurrentContext();
+                
+                // コンテキストの位置を切り取り開始位置に合わせる
+                CGPoint point = self.imageView.frame.origin;
+                CGAffineTransform affineMoveLeftTop
+                = CGAffineTransformMakeTranslation(
+                                                   -(int)point.x ,
+                                                   -(int)point.y );
+                CGContextConcatCTM(context , affineMoveLeftTop );
+                
+                // viewから切り取る
+                [(CALayer*)self.view.layer renderInContext:context];
+
+                
+                // 描画した内容をUIImageとして受け取ります。
+                UIImage *capturedImage = UIGraphicsGetImageFromCurrentImageContext();
+                
+                // 描画を終了します。
+                UIGraphicsEndImageContext();
+                
+                // Twitter投稿機能のインスタンスを作成する
+                SLComposeViewController *slComposeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+                
+                // 投稿するコンテンツを設定する
+                // 表示する文字列
+                [slComposeViewController setInitialText:@"Fukuwarai"];
+                // URL
+                //                [slComposeViewController addURL:[NSURL URLWithString:@"http://www.yoheim.net/"]];
+                // 画像
+                [slComposeViewController addImage:capturedImage];
+                
+                // 処理終了後に呼び出されるコールバックを指定する
+                [slComposeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
+                    
+                    switch (result) {
+                        case SLComposeViewControllerResultDone:
+                            NSLog(@"Done!!");
+                            break;
+                        case SLComposeViewControllerResultCancelled:
+                            NSLog(@"Cancel!!");
+                    }
+                }];
+                
+                // 表示する
+                [self presentViewController:slComposeViewController animated:YES completion:nil];
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc]
+                                          initWithTitle:@"シェアできませんでした。"
+                                          message:@"Twitterにサインインしてください。"
+                                          delegate:self
+                                          cancelButtonTitle:@"閉じる"
+                                          otherButtonTitles:nil];
+                
+                [alertView show];
+                
             }
             break;
         default:
