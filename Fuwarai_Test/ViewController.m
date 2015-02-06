@@ -31,6 +31,7 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -73,13 +74,13 @@
         UIBarButtonItem *turnover = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                                                                                target:self
                                                                                action:@selector(turnover:)];
-        //web戻るボタン
-        UIButton *customFlashButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 23,23)];
-        //ボタンに画像配置
+        // flashボタン
+        UIButton *customFlashButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 25,25)];
+        // ボタンに画像配置
         [customFlashButton setBackgroundImage:[UIImage imageNamed:@"Bulb.jpg"] forState:UIControlStateNormal];
-        //ボタンにイベントを与える。
+        // ボタンにイベントを与える。
         [customFlashButton addTarget:self action:@selector(flash:) forControlEvents:UIControlEventTouchUpInside];
-        //UIBarButtonItemにUIButtonをCustomViewとして配置する。
+        // UIBarButtonItemにUIButtonをCustomViewとして配置する。
         UIBarButtonItem *flash = [[UIBarButtonItem alloc]initWithCustomView:customFlashButton];
         
         // toolbarunderにbuttonを配置
@@ -96,7 +97,6 @@
         
         [self.view addSubview:self.previewView];
     }
-        [super viewDidLoad];
  }
 
 - (void)tearDownAVCapture
@@ -317,8 +317,7 @@
     }
 }
 // 写真選択時実行
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     [self dismissViewControllerAnimated:YES completion:nil];

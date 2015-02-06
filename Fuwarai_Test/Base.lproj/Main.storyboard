@@ -380,7 +380,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qe5-cJ-KDa">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qe5-cJ-KDa">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -392,17 +392,21 @@
                                     </constraint>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="118" id="EQl-5Z-ZSf" customClass="AlbumTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="82" id="EQl-5Z-ZSf" customClass="AlbumTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EQl-5Z-ZSf" id="BNS-oy-9mV">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Lf-G7-kYl">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Lf-G7-kYl">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="104" id="SpK-oD-pBu"/>
-                                                        <constraint firstAttribute="height" constant="93.5" id="cx3-cA-ATQ"/>
+                                                        <constraint firstAttribute="width" constant="104" id="SpK-oD-pBu">
+                                                            <variation key="widthClass=compact" constant="70"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="height" constant="93.5" id="cx3-cA-ATQ">
+                                                            <variation key="widthClass=compact" constant="67"/>
+                                                        </constraint>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -444,13 +448,17 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerX" secondItem="6Lf-G7-kYl" secondAttribute="centerX" constant="71.5" id="6Qy-is-tiI">
-                                                    <variation key="widthClass=compact" constant="72"/>
+                                                    <variation key="widthClass=compact" constant="86"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="ZZI-ew-2IO" secondAttribute="centerX" constant="-118.5" id="gXk-2v-pSF">
-                                                    <variation key="widthClass=compact" constant="-82.5"/>
+                                                    <variation key="widthClass=compact" constant="-51.5"/>
                                                 </constraint>
-                                                <constraint firstAttribute="centerY" secondItem="ZZI-ew-2IO" secondAttribute="centerY" constant="-0.25" id="hyJ-58-B6O"/>
-                                                <constraint firstAttribute="centerY" secondItem="6Lf-G7-kYl" secondAttribute="centerY" constant="4" id="kCL-VC-dDa"/>
+                                                <constraint firstAttribute="centerY" secondItem="ZZI-ew-2IO" secondAttribute="centerY" constant="-0.25" id="hyJ-58-B6O">
+                                                    <variation key="widthClass=compact" constant="-1.25"/>
+                                                </constraint>
+                                                <constraint firstAttribute="centerY" secondItem="6Lf-G7-kYl" secondAttribute="centerY" constant="4" id="kCL-VC-dDa">
+                                                    <variation key="widthClass=compact" constant="-0.75"/>
+                                                </constraint>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
@@ -657,7 +665,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xea-OE-f9S" id="Cms-T2-uHw">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nl7-wb-Zbd">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nl7-wb-Zbd">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="93.5" id="mWF-iD-Wib"/>
@@ -703,10 +711,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerX" secondItem="j6c-Tt-Oa0" secondAttribute="centerX" constant="-118.5" id="DXO-Oe-yk0">
-                                                    <variation key="widthClass=compact" constant="-85.5"/>
+                                                    <variation key="widthClass=compact" constant="-88.5"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="Nl7-wb-Zbd" secondAttribute="centerX" constant="71.5" id="F9C-oZ-XOD">
-                                                    <variation key="widthClass=compact" constant="69"/>
+                                                    <variation key="widthClass=compact" constant="66"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="j6c-Tt-Oa0" secondAttribute="centerY" constant="-0.25" id="XnO-EL-aE7"/>
                                                 <constraint firstAttribute="centerY" secondItem="Nl7-wb-Zbd" secondAttribute="centerY" constant="4" id="mwb-Ce-znB"/>

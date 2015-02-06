@@ -50,6 +50,7 @@
     _righteyeImageDoubleTapCount = 0;
     _lefteyeImageDoubleTapCount = 0;
     _status = 0;
+    
     //ユーザデフォルトに書き込む
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:_status forKey:@"status"];
@@ -288,6 +289,7 @@
             _mouth.clipsToBounds = YES;
             
         }
+        
         // ベースイメージを表示
         UIImage *baseImage = MatToUIImage(baseMat);
         self.imageView.image = baseImage;
@@ -313,6 +315,48 @@
         lefteyeImageDoubleTap.numberOfTapsRequired = 2;
         [self.lefteye addGestureRecognizer:lefteyeImageDoubleTap];
     }
+    
+    // 検出したパーツの数を確認
+    NSInteger facePartCount = 0;
+    if (self.mouth.image) {
+        facePartCount ++;
+    }
+    if (self.nose.image) {
+        facePartCount ++;
+    }
+    if (self.lefteye.image) {
+        facePartCount ++;
+    }
+    if (self.righteye.image) {
+        facePartCount ++;
+    }
+
+    if (facePartCount < 4) {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"顔ができませんでした。"
+                                  message:@"再度写真を選択してください。"
+                                  delegate:self
+                                  cancelButtonTitle:@"閉じる"
+                                  otherButtonTitles:nil];
+        
+        [alertView show];
+    }
+}
+
+-(void)alertView:(UIAlertView*)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0:
+            _status = 0;
+            //ユーザデフォルトに書き込む
+            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setInteger:_status forKey:@"status"];
+            [defaults synchronize];
+            [[UIApplication sharedApplication].delegate.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+            break;
+    }
+    
 }
 
 // イメージをリサイズする

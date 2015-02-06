@@ -23,6 +23,7 @@
 @property (nonatomic, weak) NSMutableArray *photoImages;
 @property  int countPhot;
 @property (nonatomic, weak) NSArray *imageList;
+@property (nonatomic) int status;
 
 @end
 
@@ -30,6 +31,7 @@
 
 - (void)viewDidLoad {
     
+    [super viewDidLoad];
     int status = 0;
     //ユーザデフォルトに書き込む
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -113,13 +115,20 @@
     // アルバム写真データの読み出し
     NSUserDefaults *defaultsAlbumPhoto = [NSUserDefaults standardUserDefaults];
     _photoImages = [defaultsAlbumPhoto objectForKey:@"defaultsAlbumPhoto"];
+    if (![_photoImages count]) {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"データがありません。"
+                                  message:@"アルバムまたは、アルバムにデータがありません。"
+                                  delegate:self
+                                  cancelButtonTitle:@"閉じる"
+                                  otherButtonTitles:nil];
+        
+        [alertView show];
+    }
     
     // デリゲートメソッドをこのクラスで実装する
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -164,6 +173,21 @@
     
 }
 
+-(void)alertView:(UIAlertView*)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0:
+            _status = 0;
+            //ユーザデフォルトに書き込む
+            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setInteger:_status forKey:@"status"];
+            [defaults synchronize];
+            [[UIApplication sharedApplication].delegate.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+            break;
+    }
+    
+}
 /*
 #pragma mark - Navigation
 
