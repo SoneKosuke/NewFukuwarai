@@ -388,7 +388,7 @@
                                         <variation key="widthClass=compact" constant="314"/>
                                     </constraint>
                                     <constraint firstAttribute="height" constant="349" id="6vl-zi-Qee">
-                                        <variation key="widthClass=compact" constant="376"/>
+                                        <variation key="widthClass=compact" constant="366"/>
                                     </constraint>
                                 </constraints>
                                 <prototypes>
@@ -532,7 +532,7 @@
                             <constraint firstAttribute="centerX" secondItem="qe5-cJ-KDa" secondAttribute="centerX" id="8DW-So-Hfq"/>
                             <constraint firstItem="qe5-cJ-KDa" firstAttribute="centerX" secondItem="fUy-om-g1z" secondAttribute="centerX" id="99a-eG-RrO"/>
                             <constraint firstAttribute="centerY" secondItem="qe5-cJ-KDa" secondAttribute="centerY" constant="125.5" id="W1c-wo-Owj">
-                                <variation key="widthClass=compact" constant="-12"/>
+                                <variation key="widthClass=compact" constant="-7"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="fUy-om-g1z" secondAttribute="centerY" constant="202" id="df8-9U-eeZ"/>
                         </constraints>
@@ -652,7 +652,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="349" id="FYZ-et-8ec">
-                                        <variation key="widthClass=compact" constant="376"/>
+                                        <variation key="widthClass=compact" constant="366"/>
                                     </constraint>
                                     <constraint firstAttribute="width" constant="301" id="pA3-yD-Yve">
                                         <variation key="widthClass=compact" constant="314"/>
@@ -677,7 +677,8 @@
                                                             <exclude reference="Mqh-oU-d3t"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="11" y="8" width="80" height="80"/>
                                                         <mask key="constraints">
                                                             <include reference="6f1-gU-ScE"/>
                                                             <include reference="Mqh-oU-d3t"/>
@@ -701,7 +702,8 @@
                                                             <exclude reference="o1A-p9-lVn"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="114" y="31.5" width="129" height="32"/>
                                                         <mask key="constraints">
                                                             <include reference="CMI-x0-OwT"/>
                                                             <include reference="o1A-p9-lVn"/>
@@ -791,7 +793,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="orp-WJ-LT8" secondAttribute="centerY" id="AK2-Jn-fgT">
-                                <variation key="widthClass=compact" constant="-12"/>
+                                <variation key="widthClass=compact" constant="-7"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="orp-WJ-LT8" secondAttribute="centerX" id="YOt-nk-oMZ"/>
                             <constraint firstAttribute="centerY" secondItem="Udb-Nj-lZF" secondAttribute="centerY" constant="207.5" id="ntW-Ym-Zsg">

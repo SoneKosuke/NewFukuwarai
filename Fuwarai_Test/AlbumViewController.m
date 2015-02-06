@@ -39,13 +39,18 @@
     [defaults synchronize];
     
     // 撮影ボタンを配置したツールバーを生成
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50)];
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
     toolbar.translucent = YES;
     
     // 前の画面に戻る
-    UIBarButtonItem *takePhotBack = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
-                                                                                  target:self
-                                                                                  action:@selector(takePhotBack:)];
+    UIButton *customTakePhotBackButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 30,30)];
+    // ボタンに画像配置
+    [customTakePhotBackButton setBackgroundImage:[UIImage imageNamed:@"modoru.png"] forState:UIControlStateNormal];
+    // ボタンにイベントを与える。
+    [customTakePhotBackButton addTarget:self action:@selector(takePhotBack:) forControlEvents:UIControlEventTouchUpInside];
+    // UIBarButtonItemにUIButtonをCustomViewとして配置する。
+    UIBarButtonItem *takePhotBack = [[UIBarButtonItem alloc]initWithCustomView:customTakePhotBackButton];
+    
     // スペーサを生成する
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc]
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace

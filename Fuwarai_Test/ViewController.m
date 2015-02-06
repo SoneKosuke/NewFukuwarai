@@ -39,25 +39,40 @@
     
     if (_status == 0) {
         // 撮影ボタンを配置したツールバーを生成（下）
-        UIToolbar *toolbarunder = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50)];
+        UIToolbar *toolbarunder = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
         toolbarunder.translucent = YES;
         
-        // アルバムボタンを生成する
-        UIBarButtonItem *album = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
-                                                                                target:self
-                                                                                action:@selector(album:)];
-        // カメラマークボタンを生成する
-        UIBarButtonItem *camera = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
-                                                                            target:self
-                                                                            action:@selector(takePhoto:)];
+        // albumボタン
+        UIButton *customAlbumButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 30,30)];
+        // ボタンに画像配置
+        [customAlbumButton setBackgroundImage:[UIImage imageNamed:@"cameraRoll.png"] forState:UIControlStateNormal];
+        // ボタンにイベントを与える。
+        [customAlbumButton addTarget:self action:@selector(album:) forControlEvents:UIControlEventTouchUpInside];
+        // UIBarButtonItemにUIButtonをCustomViewとして配置する。
+        UIBarButtonItem *album = [[UIBarButtonItem alloc]initWithCustomView:customAlbumButton];
+
+        // takePhotoボタン
+        UIButton *customTakePhotoButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 30,30)];
+        // ボタンに画像配置
+        [customTakePhotoButton setBackgroundImage:[UIImage imageNamed:@"camera.png"] forState:UIControlStateNormal];
+        // ボタンにイベントを与える。
+        [customTakePhotoButton addTarget:self action:@selector(takePhoto:) forControlEvents:UIControlEventTouchUpInside];
+        // UIBarButtonItemにUIButtonをCustomViewとして配置する。
+        UIBarButtonItem *camera = [[UIBarButtonItem alloc]initWithCustomView:customTakePhotoButton];
+        
         // スペーサを生成する
         UIBarButtonItem *spacer = [[UIBarButtonItem alloc]
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                target:nil action:nil];
-        // ライブラリボタンを生成する
-        UIBarButtonItem *library = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
-                                                                             target:self
-                                                                             action:@selector(openLibrary:)];
+        
+        // libraryボタン
+        UIButton *customLibraryButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 30,30)];
+        // ボタンに画像配置
+        [customLibraryButton setBackgroundImage:[UIImage imageNamed:@"album.png"] forState:UIControlStateNormal];
+        // ボタンにイベントを与える。
+        [customLibraryButton addTarget:self action:@selector(openLibrary:) forControlEvents:UIControlEventTouchUpInside];
+        // UIBarButtonItemにUIButtonをCustomViewとして配置する。
+        UIBarButtonItem *library = [[UIBarButtonItem alloc]initWithCustomView:customLibraryButton];
         
         // toolbarunderにbuttonを配置
         NSArray *itemsunder = [NSArray arrayWithObjects:album, spacer, camera, spacer, library, nil];
@@ -67,10 +82,10 @@
         [self.view addSubview:toolbarunder];
         
         // 撮影ボタンを配置したツールバーを生成（上）
-        UIToolbar *toolbartop = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
+        UIToolbar *toolbartop = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
         toolbartop.translucent = YES;
         
-        // flashボタン
+        // returnボタン
         UIButton *customTurnOverButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 30,30)];
         // ボタンに画像配置
         [customTurnOverButton setBackgroundImage:[UIImage imageNamed:@"return.png"] forState:UIControlStateNormal];
@@ -82,7 +97,7 @@
         // flashボタン
         UIButton *customFlashButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 30,30)];
         // ボタンに画像配置
-        [customFlashButton setBackgroundImage:[UIImage imageNamed:@"flash.png"] forState:UIControlStateNormal];
+        [customFlashButton setBackgroundImage:[UIImage imageNamed:@"flashCamera.png"] forState:UIControlStateNormal];
         // ボタンにイベントを与える。
         [customFlashButton addTarget:self action:@selector(flash:) forControlEvents:UIControlEventTouchUpInside];
         // UIBarButtonItemにUIButtonをCustomViewとして配置する。
@@ -96,8 +111,8 @@
     
         // プレビュー用のビューを生成
         self.previewView = [[UIView alloc] initWithFrame:CGRectMake(0, toolbartop.frame.size.height,
-                                                                self.view.bounds.size.width,
-                                                                self.view.bounds.size.height - 2*(toolbarunder.frame.size.height))];
+                                                                self.view.frame.size.width,
+                                                                self.view.frame.size.height - 2*(toolbarunder.frame.size.height))];
         
         [self.view addSubview:self.previewView];
     }
