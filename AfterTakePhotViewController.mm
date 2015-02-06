@@ -343,7 +343,7 @@
     }
 }
 
--(void)alertView:(UIAlertView*)alertView
+- (void)alertView:(UIAlertView*)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     switch (buttonIndex) {
@@ -356,7 +356,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             [[UIApplication sharedApplication].delegate.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
             break;
     }
-    
 }
 
 // イメージをリサイズする

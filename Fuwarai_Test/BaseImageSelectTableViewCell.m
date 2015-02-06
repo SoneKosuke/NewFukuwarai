@@ -42,6 +42,7 @@
     } else {
         self.image.image = [UIImage imageNamed:document[indexPath.row]];
     }
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 @end

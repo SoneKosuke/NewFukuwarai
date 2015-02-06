@@ -109,6 +109,7 @@
             [defaultsAlbumPhotoDate setObject:imageDateList forKey:@"defaultsAlbumPhotoDate"];
             [defaultsAlbumPhotoDate synchronize];
             
+            [_tableView reloadData];
         }
     } failureBlock:nil];
     
@@ -186,7 +187,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             [[UIApplication sharedApplication].delegate.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
             break;
     }
-    
 }
 /*
 #pragma mark - Navigation

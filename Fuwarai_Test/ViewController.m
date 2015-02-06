@@ -70,25 +70,29 @@
         UIToolbar *toolbartop = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
         toolbartop.translucent = YES;
         
-        // カメラの切り替えボタンを生成する
-        UIBarButtonItem *turnover = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                                                               target:self
-                                                                               action:@selector(turnover:)];
         // flashボタン
-        UIButton *customFlashButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 25,25)];
+        UIButton *customTurnOverButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 30,30)];
         // ボタンに画像配置
-        [customFlashButton setBackgroundImage:[UIImage imageNamed:@"Bulb.jpg"] forState:UIControlStateNormal];
+        [customTurnOverButton setBackgroundImage:[UIImage imageNamed:@"return.png"] forState:UIControlStateNormal];
+        // ボタンにイベントを与える。
+        [customTurnOverButton addTarget:self action:@selector(turnover:) forControlEvents:UIControlEventTouchUpInside];
+        // UIBarButtonItemにUIButtonをCustomViewとして配置する。
+        UIBarButtonItem *turnover = [[UIBarButtonItem alloc]initWithCustomView:customTurnOverButton];
+
+        // flashボタン
+        UIButton *customFlashButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 30,30)];
+        // ボタンに画像配置
+        [customFlashButton setBackgroundImage:[UIImage imageNamed:@"flash.png"] forState:UIControlStateNormal];
         // ボタンにイベントを与える。
         [customFlashButton addTarget:self action:@selector(flash:) forControlEvents:UIControlEventTouchUpInside];
         // UIBarButtonItemにUIButtonをCustomViewとして配置する。
         UIBarButtonItem *flash = [[UIBarButtonItem alloc]initWithCustomView:customFlashButton];
         
         // toolbarunderにbuttonを配置
-        NSArray *itemstop = [NSArray arrayWithObjects:turnover, spacer,flash, spacer, spacer, spacer,nil];
+        NSArray *itemstop = [NSArray arrayWithObjects:turnover, flash, spacer, spacer, spacer, nil];
         
         toolbartop.items = itemstop;
         [self.view addSubview:toolbartop];
-        
     
         // プレビュー用のビューを生成
         self.previewView = [[UIView alloc] initWithFrame:CGRectMake(0, toolbartop.frame.size.height,
@@ -199,34 +203,34 @@
     switch (_flashStatus) {
         case 1:
         {
-            AVCaptureDevice *flashLight = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-            if([flashLight isTorchAvailable] && [flashLight isTorchModeSupported:AVCaptureTorchModeOn])
+            AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+            if([captureDevice isTorchAvailable] && [captureDevice isTorchModeSupported:AVCaptureTorchModeOn] && cameraPosition == 0)
             {
-                BOOL success = [flashLight lockForConfiguration:nil];
+                BOOL success = [captureDevice lockForConfiguration:nil];
                 if(success)
                 {
-                    [flashLight setTorchMode:AVCaptureTorchModeOn];
-                    [flashLight unlockForConfiguration];
+                    [captureDevice setTorchMode:AVCaptureTorchModeOn];
+                    [captureDevice unlockForConfiguration];
+                    _flashStatus = 0;
                 }
             }
         }
-            _flashStatus = 0;
             break;
             
         default:
         {
-            AVCaptureDevice *flashLight = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-            if([flashLight isTorchAvailable] && [flashLight isTorchModeSupported:AVCaptureTorchModeOff])
+            AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+            if([captureDevice isTorchAvailable] && [captureDevice isTorchModeSupported:AVCaptureTorchModeOff])
             {
-                BOOL success = [flashLight lockForConfiguration:nil];
+                BOOL success = [captureDevice lockForConfiguration:nil];
                 if(success)
                 {
-                    [flashLight setTorchMode:AVCaptureTorchModeOff];
-                    [flashLight unlockForConfiguration];
+                    [captureDevice setTorchMode:AVCaptureTorchModeOff];
+                    [captureDevice unlockForConfiguration];
+                    _flashStatus = 1;
                 }
             }
         }
-            _flashStatus = 1;
             break;
     }
 }

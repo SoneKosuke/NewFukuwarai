@@ -33,9 +33,7 @@
     photoImages = [defaultsAlbumPhoto objectForKey:@"defaultsAlbumPhoto"];
     UIImage *image = [[UIImage alloc] initWithData:photoImages[indexPath.row]];
     self.photImage.image = image;
-    
-    NSLog(@"%@", image);
-    
+
     // 写真の保存時間を読み出し
     NSUserDefaults *defaultsAlbumPhotoDate = [NSUserDefaults standardUserDefaults];
     photoImagesDate = [defaultsAlbumPhotoDate objectForKey:@"defaultsAlbumPhotoDate"];
@@ -45,10 +43,9 @@
     
     NSMutableString *label = [NSMutableString stringWithString:mstr];
     [label deleteCharactersInRange:NSMakeRange(10, 13)];
-    
-    NSLog(@"%@", label);
 
     self.dateLabel.text = label;
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
 }
 
