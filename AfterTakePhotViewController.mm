@@ -349,10 +349,10 @@
 
     if (facePartCount < 4) {
         UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"顔が検出できませんでした。"
-                                  message:@"再度写真を選択してください。"
+                                  initWithTitle:@"Your face couldn't be recognize"
+                                  message:@"Please try again"
                                   delegate:self
-                                  cancelButtonTitle:@"閉じる"
+                                  cancelButtonTitle:@"Close"
                                   otherButtonTitles:nil];
         
         [alertView show];
@@ -597,7 +597,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                 [self presentViewController:slComposeViewController animated:YES completion:nil];    
             } else {
                 UIAlertView *alertView = [[UIAlertView alloc]
-                                          initWithTitle:@"Can't Share"
+                                          initWithTitle:@"Couldn't be Share"
                                           message:@"Please Sing in FaceBook"
                                           delegate:self
                                           cancelButtonTitle:@"Close"
@@ -661,7 +661,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                 [self presentViewController:slComposeViewController animated:YES completion:nil];
             } else {
                 UIAlertView *alertView = [[UIAlertView alloc]
-                                          initWithTitle:@"Can't Share"
+                                          initWithTitle:@"Couldn't be Share"
                                           message:@"Please Sing in Twitter"
                                           delegate:self
                                           cancelButtonTitle:@"Close"

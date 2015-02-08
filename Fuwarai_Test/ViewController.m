@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import "AfterTakePhotViewController.h"
 #import "AlbumViewController.h"
-#import "TutorialViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/ImageIO.h>
@@ -104,17 +103,8 @@
         // UIBarButtonItemにUIButtonをCustomViewとして配置する。
         UIBarButtonItem *flash = [[UIBarButtonItem alloc]initWithCustomView:customFlashButton];
         
-        // Tutorialボタン
-        UIButton *customTutorialButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, 30,30)];
-        // ボタンに画像配置
-        [customTutorialButton setBackgroundImage:[UIImage imageNamed:@"Tutorial.png"] forState:UIControlStateNormal];
-        // ボタンにイベントを与える。
-        [customTutorialButton addTarget:self action:@selector(tutorial:) forControlEvents:UIControlEventTouchUpInside];
-        // UIBarButtonItemにUIButtonをCustomViewとして配置する。
-        UIBarButtonItem *tutorial = [[UIBarButtonItem alloc]initWithCustomView:customTutorialButton];
-        
         // toolbarunderにbuttonを配置
-        NSArray *itemstop = [NSArray arrayWithObjects:turnover, flash, spacer, spacer, spacer, tutorial,nil];
+        NSArray *itemstop = [NSArray arrayWithObjects:turnover, flash, spacer, spacer, spacer, spacer,nil];
         
         toolbartop.items = itemstop;
         [self.view addSubview:toolbartop];
@@ -223,24 +213,6 @@
     }
 }
 
-// tutorial
-- (void)tutorial:(id)sender {
-    //ユーザデフォルトに書き込む
-    _status = 1;
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:_status forKey:@"status"];
-    [defaults synchronize];
-    
-    // モーダルビューを閉じる
-    [self.session stopRunning];
-    
-    // TutorialViewControllerのインスタンス化
-    TutorialViewController *TutorialViewController =  [self.storyboard instantiateViewControllerWithIdentifier:@"TutorialViewController"];
-    
-    // TutorialViewControllerの起動
-    [self presentViewController:TutorialViewController animated:YES completion:nil];
-    
-}
 // flash
 - (void)flash:(id)sender {
     switch (_flashStatus) {

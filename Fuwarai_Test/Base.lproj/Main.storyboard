@@ -72,100 +72,6 @@
             </objects>
             <point key="canvasLocation" x="-243" y="127"/>
         </scene>
-        <!--Tutorial View Controller-->
-        <scene sceneID="MuC-d1-nPg">
-            <objects>
-                <viewController storyboardIdentifier="TutorialViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QQh-Tb-HhZ" customClass="TutorialViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TXT-cv-Y7p"/>
-                        <viewControllerLayoutGuide type="bottom" id="Sr1-RJ-eOf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="snB-jo-hUr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8vJ-VB-Jwd">
-                                <rect key="frame" x="-19" y="-18" width="39" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="81" id="5gr-5d-vnU"/>
-                                    <constraint firstAttribute="height" constant="37" id="bLw-DA-C4f"/>
-                                </constraints>
-                                <color key="pageIndicatorTintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="currentPageIndicatorTintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="5gr-5d-vnU"/>
-                                        <exclude reference="bLw-DA-C4f"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="160" y="503" width="81" height="37"/>
-                                    <mask key="constraints">
-                                        <include reference="5gr-5d-vnU"/>
-                                        <include reference="bLw-DA-C4f"/>
-                                    </mask>
-                                </variation>
-                            </pageControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LvT-Ma-SRw">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="312" id="4bM-Ij-nSY"/>
-                                    <constraint firstAttribute="height" constant="390" id="Alg-kT-S81"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="4bM-Ij-nSY"/>
-                                        <exclude reference="Alg-kT-S81"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="4bM-Ij-nSY"/>
-                                        <include reference="Alg-kT-S81"/>
-                                    </mask>
-                                </variation>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="LvT-Ma-SRw" secondAttribute="centerY" constant="27" id="RWS-3P-say"/>
-                            <constraint firstAttribute="centerX" secondItem="LvT-Ma-SRw" secondAttribute="centerX" constant="44" id="UeG-cz-g3W">
-                                <variation key="widthClass=compact" constant="0.0"/>
-                            </constraint>
-                            <constraint firstItem="LvT-Ma-SRw" firstAttribute="top" secondItem="TXT-cv-Y7p" secondAttribute="bottom" constant="58" id="vzs-uz-Kdv"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="8vJ-VB-Jwd"/>
-                                <exclude reference="LvT-Ma-SRw"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="RWS-3P-say"/>
-                                <exclude reference="UeG-cz-g3W"/>
-                                <exclude reference="vzs-uz-Kdv"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="8vJ-VB-Jwd"/>
-                                <include reference="LvT-Ma-SRw"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="RWS-3P-say"/>
-                                <include reference="UeG-cz-g3W"/>
-                                <include reference="vzs-uz-Kdv"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="myPageControl" destination="8vJ-VB-Jwd" id="pSA-xp-vxa"/>
-                        <outlet property="myScrollView" destination="LvT-Ma-SRw" id="1fe-jl-gwz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z8g-07-Hn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-243" y="825"/>
-        </scene>
         <!--After Take Phot View Controller-->
         <scene sceneID="fhq-xf-Are">
             <objects>
@@ -508,8 +414,7 @@
                                                             <exclude reference="cx3-cA-ATQ"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="11" y="8.5" width="80" height="80"/>
+                                                    <variation key="widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="SpK-oD-pBu"/>
                                                             <include reference="cx3-cA-ATQ"/>
@@ -521,7 +426,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="CeS-O7-hiO"/>
                                                         <constraint firstAttribute="width" constant="208" id="IcM-rx-45e">
-                                                            <variation key="widthClass=compact" constant="129"/>
+                                                            <variation key="widthClass=compact" constant="207"/>
                                                         </constraint>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -533,8 +438,7 @@
                                                             <exclude reference="IcM-rx-45e"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="125" y="26" width="129" height="32"/>
+                                                    <variation key="widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="CeS-O7-hiO"/>
                                                             <include reference="IcM-rx-45e"/>
@@ -544,13 +448,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerX" secondItem="6Lf-G7-kYl" secondAttribute="centerX" constant="71.5" id="6Qy-is-tiI">
-                                                    <variation key="widthClass=compact" constant="109"/>
+                                                    <variation key="widthClass=compact" constant="106"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="ZZI-ew-2IO" secondAttribute="centerX" constant="-118.5" id="gXk-2v-pSF">
-                                                    <variation key="widthClass=compact" constant="-29.5"/>
+                                                    <variation key="widthClass=compact" constant="-45.5"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="ZZI-ew-2IO" secondAttribute="centerY" constant="-0.25" id="hyJ-58-B6O">
-                                                    <variation key="widthClass=compact" constant="5.75"/>
+                                                    <variation key="widthClass=compact" constant="-1"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="6Lf-G7-kYl" secondAttribute="centerY" constant="4" id="kCL-VC-dDa">
                                                     <variation key="widthClass=compact" constant="-0.75"/>
@@ -773,8 +677,7 @@
                                                             <exclude reference="Mqh-oU-d3t"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="14" y="8" width="80" height="80"/>
+                                                    <variation key="widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="6f1-gU-ScE"/>
                                                             <include reference="Mqh-oU-d3t"/>
@@ -785,9 +688,11 @@
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="208" id="CMI-x0-OwT">
-                                                            <variation key="widthClass=compact" constant="129"/>
+                                                            <variation key="widthClass=compact" constant="204"/>
                                                         </constraint>
-                                                        <constraint firstAttribute="height" constant="32" id="o1A-p9-lVn"/>
+                                                        <constraint firstAttribute="height" constant="32" id="o1A-p9-lVn">
+                                                            <variation key="widthClass=compact" constant="35"/>
+                                                        </constraint>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -798,8 +703,7 @@
                                                             <exclude reference="o1A-p9-lVn"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="117" y="31" width="129" height="32"/>
+                                                    <variation key="widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="CMI-x0-OwT"/>
                                                             <include reference="o1A-p9-lVn"/>
@@ -809,12 +713,14 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerX" secondItem="j6c-Tt-Oa0" secondAttribute="centerX" constant="-118.5" id="DXO-Oe-yk0">
-                                                    <variation key="widthClass=compact" constant="-21.5"/>
+                                                    <variation key="widthClass=compact" constant="-47"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="Nl7-wb-Zbd" secondAttribute="centerX" constant="71.5" id="F9C-oZ-XOD">
-                                                    <variation key="widthClass=compact" constant="106"/>
+                                                    <variation key="widthClass=compact" constant="103"/>
                                                 </constraint>
-                                                <constraint firstAttribute="centerY" secondItem="j6c-Tt-Oa0" secondAttribute="centerY" constant="-0.25" id="XnO-EL-aE7"/>
+                                                <constraint firstAttribute="centerY" secondItem="j6c-Tt-Oa0" secondAttribute="centerY" constant="-0.25" id="XnO-EL-aE7">
+                                                    <variation key="widthClass=compact" constant="-2"/>
+                                                </constraint>
                                                 <constraint firstAttribute="centerY" secondItem="Nl7-wb-Zbd" secondAttribute="centerY" constant="4" id="mwb-Ce-znB">
                                                     <variation key="widthClass=compact" constant="-0.75"/>
                                                 </constraint>

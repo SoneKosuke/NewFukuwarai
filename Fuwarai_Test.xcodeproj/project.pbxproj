@@ -36,7 +36,6 @@
 		89514D671A74DB99009E0DAD /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89514D631A74DB99009E0DAD /* haarcascade_frontalface_alt.xml */; };
 		89514D681A74DB99009E0DAD /* haarcascade_mcs_nose.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89514D641A74DB99009E0DAD /* haarcascade_mcs_nose.xml */; };
 		89514D691A74DB99009E0DAD /* haarcascade_mcs_mouth.xml in Resources */ = {isa = PBXBuildFile; fileRef = 89514D651A74DB99009E0DAD /* haarcascade_mcs_mouth.xml */; };
-		89769E701A8757E30078B183 /* Tutorial_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 89769E6F1A8757E30078B183 /* Tutorial_1.png */; };
 		898F7B541A7F100C00E91255 /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F7B531A7F100B00E91255 /* AlbumViewController.m */; };
 		899AF4B41A7C8F5C007518C5 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899AF4B31A7C8F5C007518C5 /* ImageIO.framework */; };
 		89B3157B1A77326C00014D05 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89514D6E1A75D30A009E0DAD /* AssetsLibrary.framework */; };
@@ -50,8 +49,6 @@
 		89C706741A84EF5B0025A65D /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C706731A84EF5B0025A65D /* camera.png */; };
 		89C7067C1A84F2570025A65D /* flashCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C7067B1A84F2570025A65D /* flashCamera.png */; };
 		89C7067E1A84F2620025A65D /* modoru.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C7067D1A84F2620025A65D /* modoru.png */; };
-		89C7068A1A860CA20025A65D /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C706891A860CA20025A65D /* TutorialViewController.m */; };
-		89C706941A8615D90025A65D /* MyPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C706931A8615D90025A65D /* MyPage.m */; };
 		89C706961A861C6B0025A65D /* Tutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C706951A861C6B0025A65D /* Tutorial.png */; };
 /* End PBXBuildFile section */
 
@@ -107,7 +104,6 @@
 		89514D641A74DB99009E0DAD /* haarcascade_mcs_nose.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_mcs_nose.xml; path = "../../../../../../Downloads/ios-face-detection-d35a62f475aa/OpenCV-2.2.0/haarcascades/haarcascade_mcs_nose.xml"; sourceTree = "<group>"; };
 		89514D651A74DB99009E0DAD /* haarcascade_mcs_mouth.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_mcs_mouth.xml; path = "../../../../../../Downloads/ios-face-detection-d35a62f475aa 3/OpenCV-2.2.0/haarcascades/haarcascade_mcs_mouth.xml"; sourceTree = "<group>"; };
 		89514D6E1A75D30A009E0DAD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		89769E6F1A8757E30078B183 /* Tutorial_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tutorial_1.png; path = ../../../../../Tutorial_1.png; sourceTree = "<group>"; };
 		898F7B521A7F100B00E91255 /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewController.h; sourceTree = "<group>"; };
 		898F7B531A7F100B00E91255 /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
 		899AF4B31A7C8F5C007518C5 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -121,10 +117,6 @@
 		89C706731A84EF5B0025A65D /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		89C7067B1A84F2570025A65D /* flashCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flashCamera.png; sourceTree = "<group>"; };
 		89C7067D1A84F2620025A65D /* modoru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modoru.png; sourceTree = "<group>"; };
-		89C706881A860CA20025A65D /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialViewController.h; path = ../TutorialViewController.h; sourceTree = "<group>"; };
-		89C706891A860CA20025A65D /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialViewController.m; path = ../TutorialViewController.m; sourceTree = "<group>"; };
-		89C706921A8615D90025A65D /* MyPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyPage.h; path = ../MyPage.h; sourceTree = "<group>"; };
-		89C706931A8615D90025A65D /* MyPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyPage.m; path = ../MyPage.m; sourceTree = "<group>"; };
 		89C706951A861C6B0025A65D /* Tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tutorial.png; path = ../../../../../Tutorial.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,7 +207,6 @@
 				891C25A51A7FBB71009C4AA1 /* BaseImageSelect */,
 				89514D5D1A735A5C009E0DAD /* AfterTakePhotViewController.h */,
 				89514D5E1A735A5C009E0DAD /* AfterTakePhotViewController.mm */,
-				89C706911A86147B0025A65D /* Tutorial */,
 				894F3D8A1A5FC29600552369 /* ViewController.h */,
 				894F3D8B1A5FC29600552369 /* ViewController.m */,
 				894F3D8D1A5FC29600552369 /* Main.storyboard */,
@@ -264,18 +255,6 @@
 				89514D631A74DB99009E0DAD /* haarcascade_frontalface_alt.xml */,
 			);
 			name = xmlFile;
-			sourceTree = "<group>";
-		};
-		89C706911A86147B0025A65D /* Tutorial */ = {
-			isa = PBXGroup;
-			children = (
-				89769E6F1A8757E30078B183 /* Tutorial_1.png */,
-				89C706881A860CA20025A65D /* TutorialViewController.h */,
-				89C706891A860CA20025A65D /* TutorialViewController.m */,
-				89C706921A8615D90025A65D /* MyPage.h */,
-				89C706931A8615D90025A65D /* MyPage.m */,
-			);
-			name = Tutorial;
 			sourceTree = "<group>";
 		};
 		89C706981A8621490025A65D /* Icon */ = {
@@ -393,7 +372,6 @@
 				891C25BD1A80B1D3009C4AA1 /* cat.jpg in Resources */,
 				89C7067E1A84F2620025A65D /* modoru.png in Resources */,
 				89C706961A861C6B0025A65D /* Tutorial.png in Resources */,
-				89769E701A8757E30078B183 /* Tutorial_1.png in Resources */,
 				894E32921A83051900225535 /* umerareruDansei.jpg in Resources */,
 				891C25BF1A80B1D3009C4AA1 /* fish.jpg in Resources */,
 				89514D691A74DB99009E0DAD /* haarcascade_mcs_mouth.xml in Resources */,
@@ -441,8 +419,6 @@
 				891C25A11A7FB4F5009C4AA1 /* BaseImageSelectViewController.m in Sources */,
 				894F3D891A5FC29600552369 /* Fuwarai_Test.xcdatamodeld in Sources */,
 				8937042E1A7DFA1900E71864 /* PhotSelectViewController.m in Sources */,
-				89C706941A8615D90025A65D /* MyPage.m in Sources */,
-				89C7068A1A860CA20025A65D /* TutorialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
