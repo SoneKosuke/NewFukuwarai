@@ -15,14 +15,14 @@
 	</array>
 	<key>kind</key>
 	<array>
-		<string>さつえい がぞう</string>
-		<string>じょせい</string>
-		<string>だんせい</string>
-		<string>埋められたひと</string>
-		<string>さかな</string>
-		<string>ねこ</string>
-		<string>いぬ</string>
-		<string>おかめ</string>
+		<string>Photographed Image</string>
+		<string>Female</string>
+		<string>Male</string>
+		<string>To bury in the ground</string>
+		<string>Fish</string>
+		<string>Cat</string>
+		<string>Dog</string>
+		<string>Okame</string>
 	</array>
 </dict>
 </plist>

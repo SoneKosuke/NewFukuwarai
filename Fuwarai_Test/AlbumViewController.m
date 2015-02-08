@@ -63,7 +63,7 @@
     
     // アルバムの写真をカメラロールから取得
     _library = [[ALAssetsLibrary alloc] init];
-    _AlbumName = @"123";
+    _AlbumName = @"Fukuwarai";
     _AlAssetsArr = [NSMutableArray array];
     NSMutableArray *imageList = [NSMutableArray new];
     NSMutableArray *imageDateList = [NSMutableArray new];

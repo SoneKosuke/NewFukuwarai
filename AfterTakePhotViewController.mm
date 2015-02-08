@@ -37,6 +37,7 @@
 @property (nonatomic) NSInteger mouthImageDoubleTapCount;
 @property (nonatomic) NSInteger righteyeImageDoubleTapCount;
 @property (nonatomic) NSInteger lefteyeImageDoubleTapCount;
+@property (nonatomic) NSInteger albumCount;
 @property (nonatomic) CGFloat mouthrotation;
 
 @end
@@ -348,13 +349,15 @@
 
     if (facePartCount < 4) {
         UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"顔ができませんでした。"
+                                  initWithTitle:@"顔が検出できませんでした。"
                                   message:@"再度写真を選択してください。"
                                   delegate:self
                                   cancelButtonTitle:@"閉じる"
                                   otherButtonTitles:nil];
         
         [alertView show];
+    } else {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     }
 }
 
@@ -464,11 +467,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 // 保存・シェアボタンが押された時
 - (void)share:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"保存・シェア"
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Save・Share"
                                                              delegate:self
-                                                    cancelButtonTitle:@"キャンセル"
+                                                    cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"カメラロールに保存", @"FaceBookでシェア", @"Twitterでシェア", nil];
+                                                    otherButtonTitles:@"Save", @"Share on FaceBook", @"Share on Twitter", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -501,8 +504,13 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             
             // ALAssetLibraryのインスタン作成
             _library = [[ALAssetsLibrary alloc] init];
-            _AlbumName = @"123";
-            _albumWasFound = true;
+            _AlbumName = @"Fukuwarai";
+            
+            if (_albumCount == 1) {
+                _albumWasFound = TRUE;
+            } else {
+                _albumWasFound = FALSE;
+            }
             
             // アルバムを検索してなかったら新規作成、あったらアルバムのURLを保持
             [_library enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
@@ -531,6 +539,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
                 // アルバムにALAssetを追加するメソッド
                 [self addAssetURL:assetURL AlbumURL:_groupURL];
+                _albumCount = 1;
                 }
              ];
         }
@@ -588,10 +597,10 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                 [self presentViewController:slComposeViewController animated:YES completion:nil];    
             } else {
                 UIAlertView *alertView = [[UIAlertView alloc]
-                                          initWithTitle:@"シェアできませんでした。"
-                                          message:@"FaceBookにサインインしてください。"
+                                          initWithTitle:@"Can't Share"
+                                          message:@"Please Sing in FaceBook"
                                           delegate:self
-                                          cancelButtonTitle:@"閉じる"
+                                          cancelButtonTitle:@"Close"
                                           otherButtonTitles:nil];
                 
                 [alertView show];
@@ -652,10 +661,10 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                 [self presentViewController:slComposeViewController animated:YES completion:nil];
             } else {
                 UIAlertView *alertView = [[UIAlertView alloc]
-                                          initWithTitle:@"シェアできませんでした。"
-                                          message:@"Twitterにサインインしてください。"
+                                          initWithTitle:@"Can't Share"
+                                          message:@"Please Sing in Twitter"
                                           delegate:self
-                                          cancelButtonTitle:@"閉じる"
+                                          cancelButtonTitle:@"Close"
                                           otherButtonTitles:nil];
                 
                 [alertView show];
@@ -663,7 +672,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             }
             break;
         default:
-            NSLog(@"キャンセルボタンがクリックされました");
+            NSLog(@"Cansel");
             break;
     }
 }
